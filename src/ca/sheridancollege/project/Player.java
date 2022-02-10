@@ -10,8 +10,10 @@ package ca.sheridancollege.project;
  *
  * @author dancye
  * @author Paul Bonenfant Jan 2020
+ * @author Jayson Evans Feb 2022
  */
-public abstract class Player {
+public abstract class Player
+{
 
     private String name; //the unique name for this player
 
@@ -20,14 +22,16 @@ public abstract class Player {
      *
      * @param name the unique ID to assign to this player.
      */
-    public Player(String name) {
+    public Player(String name)
+    {
         this.name = name;
     }
 
     /**
      * @return the player name
      */
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
@@ -36,7 +40,8 @@ public abstract class Player {
      *
      * @param name the player name to set
      */
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
