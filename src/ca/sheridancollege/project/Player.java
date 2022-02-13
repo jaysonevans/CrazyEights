@@ -12,7 +12,7 @@ package ca.sheridancollege.project;
  * @author Paul Bonenfant Jan 2020
  * @author Jayson Evans Feb 2022
  */
-public abstract class Player
+public abstract class Player implements Cloneable
 {
 
     private String name; //the unique name for this player
@@ -43,6 +43,15 @@ public abstract class Player
     public void setName(String name)
     {
         this.name = name;
+    }
+    
+    /**
+     * @return a copy of the player object
+     */
+    @Override
+    protected Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
     }
 
     /**

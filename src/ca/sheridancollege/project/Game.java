@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author Paul Bonenfant Jan 2020
  * @author Jayson Evans Feb 2022
  */
-public abstract class Game
+public abstract class Game implements Cloneable
 {
 
     private final String name;//the title of the game
@@ -40,7 +40,23 @@ public abstract class Game
      */
     public ArrayList<Player> getPlayers()
     {
-        return players;
+        return (ArrayList<Player>)players.clone();
+    }
+    
+    /**
+     * @return the deeply copied ArrayList of players
+     */
+    @Override
+    public Object clone() throws CloneNotSupportedException
+    {
+        ArrayList<Player> list = new ArrayList<>();
+        
+        for (Player player: players)
+        {
+            list.add((Player)player.clone());
+        }
+        
+        return list;
     }
 
     /**
