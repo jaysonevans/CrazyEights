@@ -75,7 +75,7 @@ public class DiscardPile extends GroupOfCards
     {
         CrazyEightsCard topCard = getTopCard();
         
-        return card.getSuit() == topCard.getSuit();
+        return ( card.getSuit() == topCard.getSuit() || card.getValue() == topCard.getValue() );
     }
     
     // Checks if the card is an eight
