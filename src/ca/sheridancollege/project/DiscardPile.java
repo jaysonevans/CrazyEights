@@ -7,17 +7,18 @@ import java.util.Scanner;
  * This class represents the discard pile in a game of Crazy Eights.
  *
  * @author Jayson Evans
+ * @author Ryan Stewart
  */
-public class DiscardPile
+public class DiscardPile extends GroupOfCards
 {
 
-    private ArrayList<CrazyEightsCard> pile = new ArrayList<>();
+    //private ArrayList<CrazyEightsCard> cards = new ArrayList<>();
     private Scanner input = new Scanner(System.in);
     private boolean addSuccessful = false; // Used for when prompting for another card
     
     public DiscardPile()
     {
-        
+        super(52); // GroupOfCards constructor, placeholder value
     }
     
     public boolean isAddSuccessful()
@@ -29,9 +30,9 @@ public class DiscardPile
     public void add(CrazyEightsCard card)
     {
         // For the first card added to the pile when starting the game
-        if (pile.isEmpty())
+        if (cards.isEmpty())
         {
-            pile.add(card);
+            cards.add(card);
             addSuccessful = true;
         }
         else 
@@ -43,7 +44,7 @@ public class DiscardPile
             }
             else if (topCardMatches(card))
             {
-                pile.add(card);
+                cards.add(card);
                 addSuccessful = true;
             }
             else
@@ -57,7 +58,7 @@ public class DiscardPile
     // Gets the top card in the pile
     public CrazyEightsCard getTopCard()
     {
-        return pile.get(pile.size() - 1);
+        return cards.get(cards.size() - 1);
     }
     
     // Print an error for a nonmatching suit in the card
@@ -121,7 +122,7 @@ public class DiscardPile
             }
         }
         
-        pile.add(card); // Add the modified card to the pile
+        cards.add(card); // Add the modified card to the pile
     }
     
     // Text prompt for the user to enter a suit number
@@ -142,7 +143,7 @@ public class DiscardPile
     public void printPile()
     {
         System.out.println("The discard pile contains:");
-        for (CrazyEightsCard card: pile)
+        for (CrazyEightsCard card: cards)
         {
             System.out.println(card);
         }
@@ -153,8 +154,8 @@ public class DiscardPile
     {
         CrazyEightsCard card = getTopCard();
         
-        pile.clear();
+        cards.clear();
         
-        pile.add(card);
+        cards.add(card);
     }
 }

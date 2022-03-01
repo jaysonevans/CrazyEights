@@ -7,15 +7,16 @@ import java.util.Collections;
  * This class represents the stock pile in a game of Crazy Eights.
  *
  * @author Jayson Evans
+ * @author Ryan Stewart
  */
-public class StockPile 
+public class StockPile extends GroupOfCards
 {
 
-    private ArrayList<CrazyEightsCard> cards = new ArrayList<>();
+    //private ArrayList<CrazyEightsCard> cards = new ArrayList<>();
     
     public StockPile()
     {
-        
+        super(52); // GroupOfCards constructor, placeholder value
     }
     
     // Takes a card from the pile

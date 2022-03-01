@@ -15,12 +15,13 @@ import java.util.Collections;
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  * @author Jayson Evans Feb 2022
+ * @author Ryan Stewart
  */
 public class GroupOfCards
 {
 
     //The group of cards, stored in an ArrayList
-    private ArrayList<Card> cards;
+    protected ArrayList<CrazyEightsCard> cards = new ArrayList<>();
     private int size;//the size of the grouping
 
     public GroupOfCards(int size)
@@ -33,7 +34,7 @@ public class GroupOfCards
      *
      * @return the group of cards.
      */
-    public ArrayList<Card> getCards()
+    public ArrayList<CrazyEightsCard> getCards()
     {
         return cards;
     }
