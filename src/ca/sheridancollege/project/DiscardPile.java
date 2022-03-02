@@ -18,7 +18,7 @@ public class DiscardPile extends GroupOfCards
     
     public DiscardPile()
     {
-        super(52); // GroupOfCards constructor, placeholder value
+        super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
     }
     
     public boolean isAddSuccessful()

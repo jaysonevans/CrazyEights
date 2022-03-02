@@ -16,7 +16,7 @@ public class StockPile extends GroupOfCards
     
     public StockPile()
     {
-        super(52); // GroupOfCards constructor, placeholder value
+        super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
     }
     
     // Takes a card from the pile

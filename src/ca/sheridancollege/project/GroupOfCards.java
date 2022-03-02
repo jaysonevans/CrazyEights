@@ -20,6 +20,10 @@ import java.util.Collections;
 public class GroupOfCards
 {
 
+    // Constants add modularity to the number of cards in the game
+    public final static int NUMBER_OF_VALUES = Value.values().length;
+    public final static int NUMBER_OF_SUITS = Suit.values().length;
+    
     //The group of cards, stored in an ArrayList
     protected ArrayList<CrazyEightsCard> cards = new ArrayList<>();
     private int size;//the size of the grouping
