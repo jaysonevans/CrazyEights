@@ -11,13 +11,18 @@ import java.util.Scanner;
 public class DiscardPile extends GroupOfCards
 {
 
-    //private ArrayList<CrazyEightsCard> cards = new ArrayList<>();
     private Scanner input = new Scanner(System.in);
     private boolean addSuccessful = false; // Used for when prompting for another card
     
     public DiscardPile()
     {
         super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
+    }
+    
+    public DiscardPile(CrazyEightsCard startingCard)
+    {
+        super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
+        add(startingCard);
     }
     
     public boolean isAddSuccessful()

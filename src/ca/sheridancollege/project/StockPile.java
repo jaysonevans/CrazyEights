@@ -10,12 +10,16 @@ import java.util.Collections;
  */
 public class StockPile extends GroupOfCards
 {
-
-    //private ArrayList<CrazyEightsCard> cards = new ArrayList<>();
     
     public StockPile()
     {
         super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
+    }
+    
+    public StockPile(CrazyEightsCard startingCard)
+    {
+        super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
+        restock(startingCard);
     }
     
     // Takes a card from the pile

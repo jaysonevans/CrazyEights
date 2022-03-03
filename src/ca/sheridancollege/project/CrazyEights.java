@@ -2,6 +2,7 @@ package ca.sheridancollege.project;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 /**
  * This class controls game flow and operations related to the game.
@@ -18,9 +19,24 @@ public class CrazyEights extends Game
         super(NAME);
     }
     
+    // Display the rules of the game
+    public void displayRules()
+    {
+        System.out.println("Here are the rules: ");
+        System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n",
+                "1. Get rid of the cards in your hand.",
+                "2. You can place any card with a matching suit or value.",
+                "3. You can play down multiple cards of the same value on the same turn.",
+                "4. Queen of Spades on top of the discard pile makes the next player pick up 5 cards.",
+                "5. Two makes the next player pick up two.",
+                "6. Twos stack");
+    }
+    
+    @Override
     public void declareWinner()
     {
     }
+    
     
     @Override
     public void play()
@@ -39,15 +55,26 @@ public class CrazyEights extends Game
         
         // 4. Display a welcome message to the player and print the rules
         System.out.println("\nGreetings, " + humanPlayer.getName() + ".\nWelcome to " + getName() + ".");
-        System.out.println("Here are the rules: ");
-        System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n",
-                "1. Get rid of the cards in your hand.",
-                "2. You can place any card with a matching suit or value.",
-                "3. You can play down multiple cards of the same value on the same turn.",
-                "4. Queen of Spades on top of the discard pile makes the next player pick up 5 cards.",
-                "5. Two makes the next player pick up two.",
-                "6. Twos stack");
+        displayRules();
         
+        // 5. Create the opponent
+        ComputerPlayer com = new ComputerPlayer("COM");
+        
+        // 6. Generate a random card
+        Random random = new Random();
+        
+        Value randomValue = Value.values()[random.nextInt(Value.values().length)];
+        Suit randomSuit = Suit.values()[random.nextInt(Suit.values().length)];
+        
+        CrazyEightsCard startingCard = new CrazyEightsCard(randomSuit, randomValue);
+        
+        // 7. Instantiate the stock pile and fill it with all but the random card
+        StockPile stockPile = new StockPile(startingCard);
+        
+        // 9. Create the discard pile and give one card to it
+        DiscardPile discardPile = new DiscardPile(startingCard);
+        
+        /*
         // 5. Ask for and create the opponents
         System.out.print("Enter the number of opponents between 1 and 3, anything else defaults to 3: ");
         int numberOfOpponents = input.nextInt();
@@ -79,6 +106,7 @@ public class CrazyEights extends Game
             tempPlayers.add(comTwo);
             tempPlayers.add(comThree);
         }
+*/
     }
     
     public static void main(String[] args)
