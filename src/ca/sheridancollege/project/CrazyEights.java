@@ -14,6 +14,8 @@ import java.util.Random;
 public final class CrazyEights extends Game
 {
     public static final String NAME = "Crazy Eights";
+    public static final int NUMBER_OF_STARTING_CARDS = 8;
+    
     public CrazyEights()
     {
         super(NAME);
@@ -75,7 +77,26 @@ public final class CrazyEights extends Game
         DiscardPile discardPile = new DiscardPile(startingCard);
         
         // 9. Deal the cards
+        // To the player
+        for (int i = 1; i <= NUMBER_OF_STARTING_CARDS; i++)
+        {
+            CrazyEightsCard card = stockPile.pickUp();
+            humanPlayer.addToHand(card);
+        }
+        // To the opponent
+        for (int i = 1; i <= NUMBER_OF_STARTING_CARDS; i++)
+        {
+            CrazyEightsCard card = stockPile.pickUp();
+            com.addToHand(card);
+        }
         
+        humanPlayer.printHand();
+        System.out.println();
+        com.printHand();
+        System.out.println();
+        stockPile.printPile();
+        System.out.println();
+        discardPile.printPile();
         
         // 10. Start the main game loop
         boolean noWinner = true;

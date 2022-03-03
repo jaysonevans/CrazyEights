@@ -10,7 +10,7 @@ import java.util.Collections;
  */
 public final class HumanPlayer extends Player
 {
-    ArrayList<CrazyEightsCard> hand = new ArrayList<>();
+    private ArrayList<CrazyEightsCard> hand = new ArrayList<>();
     
     public HumanPlayer(String name)
     {
@@ -31,6 +31,7 @@ public final class HumanPlayer extends Player
     // Display the player's hand
     public void printHand()
     {
+        System.out.println("Your hand is:");
         Collections.sort(hand);
         for (CrazyEightsCard card: hand)
         {
