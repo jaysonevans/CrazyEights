@@ -12,23 +12,35 @@ public final class HumanPlayer extends Player
 {
     private ArrayList<CrazyEightsCard> hand = new ArrayList<>();
     
+    /**
+     * @param name to pass to the Player class
+     * The player can have any name.
+     */
     public HumanPlayer(String name)
     {
         super(name);
     }
     
+    /**
+     * To be called by the game to initiate the
+     * player's turn. Requires user input.
+     */
     public void play()
     {
         
     }
     
-    // Add to the player's hand
+    /**
+     * @param card to be added to the hand
+     */
     public void addToHand(CrazyEightsCard card)
     {
         hand.add(card);
     }
     
-    // Display the player's hand
+    /**
+     * Display the hand of this player
+     */
     public void printHand()
     {
         System.out.println("Your hand is:");

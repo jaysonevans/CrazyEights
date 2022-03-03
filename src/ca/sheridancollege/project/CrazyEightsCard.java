@@ -10,6 +10,11 @@ public final class CrazyEightsCard extends Card implements Comparable<CrazyEight
     private Suit suit;
     private Value value;
     
+    /**
+     * 
+     * @param suit of the card (e.g. HEARTS, DIAMONDS)
+     * @param value of the card (e.g. TWO, SEVEN, JACK)
+     */
     public CrazyEightsCard(Suit suit, Value value)
     {
         setSuit(suit);
@@ -54,6 +59,11 @@ public final class CrazyEightsCard extends Card implements Comparable<CrazyEight
         return value.name() + " of " + suit.name();
     }
     
+    /**
+     * 
+     * @param otherCard the card to compare with
+     * @return a number based of the suits and values of the cards in relation to each other
+     */
     @Override
     public int compareTo(CrazyEightsCard otherCard)
     {

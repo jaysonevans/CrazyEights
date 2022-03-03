@@ -13,21 +13,35 @@ public final class ComputerPlayer extends Player
     
     private ArrayList<CrazyEightsCard> hand = new ArrayList<>();
     
+    /**
+     * @param name to pass to the Player class
+     * Name's for computer should generally follow
+     * the format of COM#.
+     */
     public ComputerPlayer(String name)
     {
         super(name);
     }
+    
+    /**
+     * To be called by the game to initiate the
+     * computer's turn. Does not require user input.
+     */
     public void play()
     {
     }
     
-    // Add to the computers's hand
+    /**
+     * @param card to be added to the hand
+     */
     public void addToHand(CrazyEightsCard card)
     {
         hand.add(card);
     }
     
-        // Display the player's hand
+    /**
+     * Display the hand of this player
+     */
     public void printHand()
     {
         System.out.println(super.getName() + "'s hand contains:");

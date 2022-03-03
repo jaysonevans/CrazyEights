@@ -6,8 +6,8 @@ import java.util.Random;
 
 /**
  * This class controls game flow and operations related to the game.
- * The most relevant method is play() which controls sets up the game
- * and calls other methods when needed.
+ * The most relevant method is play() which sets up the game and
+ * calls other methods when needed.
  *
  * @author Jayson Evans
  */
@@ -16,12 +16,22 @@ public final class CrazyEights extends Game
     public static final String NAME = "Crazy Eights";
     public static final int NUMBER_OF_STARTING_CARDS = 8;
     
+    /**
+     * Constructor isn't supposed to be used as
+     * a typical object, more as a controller/coordinator
+     * of other objects.
+     * 
+     * Since the name won't change, it's used here as a 
+     * class variable to call the constructor.
+     */
     public CrazyEights()
     {
         super(NAME);
     }
     
-    // Display the rules of the game
+    /**
+     * Display the rules of the game
+     */
     public void displayRules()
     {
         System.out.println("Here are the rules: ");
@@ -39,7 +49,15 @@ public final class CrazyEights extends Game
     {
     }
     
-    
+    /**
+     * Does the heavy lifting in coordinating 
+     * objects can method calls.
+     * 
+     * It would probably be better as a main method
+     * but I needed to override the abstract method
+     * in Game to inherit from it, and so, this is 
+     * the result.
+     */
     @Override
     public void play()
     {
@@ -77,12 +95,14 @@ public final class CrazyEights extends Game
         DiscardPile discardPile = new DiscardPile(startingCard);
         
         // 9. Deal the cards
+        
         // To the player
         for (int i = 1; i <= NUMBER_OF_STARTING_CARDS; i++)
         {
             CrazyEightsCard card = stockPile.pickUp();
             humanPlayer.addToHand(card);
         }
+        
         // To the opponent
         for (int i = 1; i <= NUMBER_OF_STARTING_CARDS; i++)
         {
@@ -103,10 +123,19 @@ public final class CrazyEights extends Game
         
         while (noWinner)
         {
-            
+            // End the game loop for testing
+            noWinner = false;
         }
     }
     
+    /**
+     * Needed to execute the play method in the
+     * CrazyEights class. It's put here for 
+     * simplicity but could be in it's own
+     * class.
+     * 
+     * @param args
+     */
     public static void main(String[] args)
     {
         new CrazyEights().play();

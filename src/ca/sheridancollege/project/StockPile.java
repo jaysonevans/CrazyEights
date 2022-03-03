@@ -11,19 +11,36 @@ import java.util.Collections;
 public final class StockPile extends GroupOfCards
 {
     
+    /**
+     * Constructs a stock pile with a size equal
+     * to that of the deck.
+     */
     public StockPile()
     {
         super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
     }
     
+    /**
+     * Constructs a stock pile with a size equal
+     * to that of the deck. And fill it with cards
+     * but for the starting card at the top of the 
+     * discard pile.
+     * 
+     * @param startingCard 
+     */
     public StockPile(CrazyEightsCard startingCard)
     {
         super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
         restock(startingCard);
     }
     
-    // Takes a card from the pile
-    // Returns null if cards is empty
+    /**
+     * Takes a card from the pile. 
+     * Controller classes should check if the pile is 
+     * empty so as not to return null.
+     * 
+     * @return the first card in the pile or null if empty
+     */
     public CrazyEightsCard pickUp()
     {
         if (cards.isEmpty())
@@ -40,17 +57,27 @@ public final class StockPile extends GroupOfCards
         }
     }
     
-    // To be used before picking up a card
-    // The pick up method naturally checks this 
-    // but it's good for the user to have access to it so they don't get null
+    /**
+     * To be called by the controller class before
+     * picking up a card so as not to return null.
+     * If classes that call pick up don't want to 
+     * check before, then they will have to implement
+     * a check for null.
+     * 
+     * @return true if the stock pile is empty
+     */
     public boolean isEmpty()
     {
         return cards.isEmpty();
     }
     
-    // Restock the stock pile with all cards except the one at the top
-    // of the discard pile.
-    // Reshuffle the cards after all the cards are added.
+    /**
+     * Restock the stock pile with all cards except the one
+     * at the top of the discard pile. And shuffle after
+     * all the cards have been added.
+     * 
+     * @param excludedCard card at the top of the discard pile
+     */
     public void restock(CrazyEightsCard excludedCard)
     {
         for (Value value: Value.values())
@@ -69,11 +96,17 @@ public final class StockPile extends GroupOfCards
             }
         }
         
-        Collections.shuffle(cards);
+        super.shuffle();
     }
     
+    /**
+     * Display the contents of the stock pile.
+     * Mainly used for testing purposes.
+     */
     public void printPile()
     {
+        Collections.sort(cards);
+        
         System.out.println("The stock pile contains:");
         for (CrazyEightsCard card: cards)
         {

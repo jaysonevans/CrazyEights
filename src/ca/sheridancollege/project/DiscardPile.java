@@ -14,23 +14,54 @@ public final class DiscardPile extends GroupOfCards
     private Scanner input = new Scanner(System.in);
     private boolean addSuccessful = false; // Used for when prompting for another card
     
+    /**
+     * Constructs a discard pile with a size equal to 
+     * that of the deck.
+     */
     public DiscardPile()
     {
-        super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
+        super(NUMBER_OF_VALUES * NUMBER_OF_SUITS);
     }
     
+    /**
+     * Constructs a discard pile with a size equal to
+     * that of the deck
+     * 
+     * @param startingCard the card to be at the top of
+     * the discard pile.
+     */
     public DiscardPile(CrazyEightsCard startingCard)
     {
-        super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
+        super(NUMBER_OF_VALUES * NUMBER_OF_SUITS);
         add(startingCard);
     }
     
+    /**
+     * @return whether the addition to the discard pile was successful
+     */
     public boolean isAddSuccessful()
     {
         return addSuccessful;
     }
     
-    // When adding a card to the pile
+    /**
+     * There are three cases when adding a card:
+     *  1.  The pile is empty, which would mean that 
+     *      this is the first card to be added to the pile.
+     *      Since this is the first card, it will be added
+     *      regardless of the suit and value.
+     *  2.  The card is an eight, which means we would have
+     *      to request what the player wants the first suit
+     *      in the pile to be. Elaborated more in the addEight()
+     *      method.
+     *  3.  The card has a matching suit or value.  In which case
+     *      just add it to the deck.
+     *  4.  The card does not have a matching suit or value.  In 
+     *      which case, do not add it and print and error message
+     *      to the console.
+     * 
+     * @param card to add to the discard pile
+     */
     public void add(CrazyEightsCard card)
     {
         // For the first card added to the pile when starting the game
@@ -59,22 +90,35 @@ public final class DiscardPile extends GroupOfCards
         }
     }
     
-    // Gets the top card in the pile
+    /**
+     * @return the card at the top of the discard pile
+     */
     public CrazyEightsCard getTopCard()
     {
         return cards.get(cards.size() - 1);
     }
     
-    // Print an error for a nonmatching suit in the card
+    /**
+     * Prints a simple error message to the screen telling
+     * the user their card was not added.
+     * 
+     * @param card the card that was the user tried to put
+     */
     public void printCardDoesNotMatch(CrazyEightsCard card)
     {
         String output = "Error: " + card.toString() + " does not match " +
-                getTopCard().toString() + "'s suit.\nNo card was added.";
+                getTopCard().toString() + "'s suit or value.\nNo card was added.";
         
         System.out.println(output);
     }
     
-    // Returns true if a top card matches
+    /**
+     * Doesn't look for an identical match but a match 
+     * between suit and suit or value and value.
+     * 
+     * @param card to be compared with the top card
+     * @return true if the card can be placed on the top card
+     */
     public boolean topCardMatches(CrazyEightsCard card)
     {
         CrazyEightsCard topCard = getTopCard();
@@ -82,13 +126,32 @@ public final class DiscardPile extends GroupOfCards
         return ( card.getSuit() == topCard.getSuit() || card.getValue() == topCard.getValue() );
     }
     
-    // Checks if the card is an eight
+    /**
+     * @param card to be tested
+     * @return true if the card is an eight
+     */
     public boolean cardIsEight(CrazyEightsCard card)
     {
         return card.getValue() == Value.EIGHT;
     }
     
-    // For adding an eight to the pile
+    /**
+     * Asks the user what they'd like to change
+     * the suit of the top card to and then 
+     * changes the suit value of the card.
+     * 
+     * These suit values do not have an reappear 
+     * when restocking the deck because the method
+     * restocks the deck with newly created cards.
+     * 
+     * If an eight is at the top of the discard pile
+     * when reshuffling, the restock just assumes it's
+     * what it says it is and creates eights of different
+     * suits. Extremely minor and improbable but may be
+     * something to address later.
+     * 
+     * @param card which has the value EIGHT
+     */
     public void addEight(CrazyEightsCard card)
     {
         boolean go = true; // sentinel value to ensure a correct suit number was entered
@@ -129,8 +192,10 @@ public final class DiscardPile extends GroupOfCards
         cards.add(card); // Add the modified card to the pile
     }
     
-    // Text prompt for the user to enter a suit number
-    // Used exclusively for cards with a value of eight
+    /**
+     * Text prompt for the user to enter a suit number
+     * when placing an eight.
+     */
     public void promptForSuit()
     {
             System.out.println("What would you like the top suit to be:");
@@ -141,9 +206,10 @@ public final class DiscardPile extends GroupOfCards
             }
     }
     
-    
-    // Print the cards in the pile
-    // Mainly for testing
+    /**
+     * Print the cards in the pile.
+     * Mainly for testing.
+     */
     public void printPile()
     {
         System.out.println("The discard pile contains:");
@@ -153,7 +219,10 @@ public final class DiscardPile extends GroupOfCards
         }
     }
     
-    // Clear the discard pile for reuse in the stock pile up until the last card
+    /**
+     * Clear the discard pile for reuse in the stock pile
+     * except for the top card.
+     */
     public void restock()
     {
         CrazyEightsCard card = getTopCard();
