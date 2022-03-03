@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Jayson Evans
  */
-public class CrazyEights extends Game
+public final class CrazyEights extends Game
 {
     public static final String NAME = "Crazy Eights";
     public CrazyEights()
@@ -71,42 +71,11 @@ public class CrazyEights extends Game
         // 7. Instantiate the stock pile and fill it with all but the random card
         StockPile stockPile = new StockPile(startingCard);
         
-        // 9. Create the discard pile and give one card to it
+        // 8. Create the discard pile and give one card to it
         DiscardPile discardPile = new DiscardPile(startingCard);
         
-        /*
-        // 5. Ask for and create the opponents
-        System.out.print("Enter the number of opponents between 1 and 3, anything else defaults to 3: ");
-        int numberOfOpponents = input.nextInt();
-        
-        if (numberOfOpponents == 1)
-        {
-            // Create player
-            ComputerPlayer comOne = new ComputerPlayer("COM1");
-            // Add to the ArrayList
-            tempPlayers.add(comOne);
-        }
-        else if (numberOfOpponents == 2)
-        {
-            // Create players
-            ComputerPlayer comOne = new ComputerPlayer("COM1");
-            ComputerPlayer comTwo = new ComputerPlayer("COM2");
-            // Add to the ArrayList
-            tempPlayers.add(comOne);
-            tempPlayers.add(comTwo);
-        }
-        else
-        {
-            // Create players
-            ComputerPlayer comOne = new ComputerPlayer("COM1");
-            ComputerPlayer comTwo = new ComputerPlayer("COM2");
-            ComputerPlayer comThree = new ComputerPlayer("COM3");
-            // Add to the ArrayList
-            tempPlayers.add(comOne);
-            tempPlayers.add(comTwo);
-            tempPlayers.add(comThree);
-        }
-*/
+        stockPile.printPile();
+        discardPile.printPile();
     }
     
     public static void main(String[] args)

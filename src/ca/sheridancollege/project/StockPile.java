@@ -8,7 +8,7 @@ import java.util.Collections;
  * @author Jayson Evans
  * @author Ryan Stewart
  */
-public class StockPile extends GroupOfCards
+public final class StockPile extends GroupOfCards
 {
     
     public StockPile()
@@ -74,6 +74,7 @@ public class StockPile extends GroupOfCards
     
     public void printPile()
     {
+        System.out.println("The stock pile contains:");
         for (CrazyEightsCard card: cards)
         {
             System.out.println(card);

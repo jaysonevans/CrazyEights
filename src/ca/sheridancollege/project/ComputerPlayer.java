@@ -5,7 +5,7 @@ package ca.sheridancollege.project;
  *
  * @author Jayson Evans
  */
-public class ComputerPlayer extends Player
+public final class ComputerPlayer extends Player
 {
     public ComputerPlayer(String name)
     {

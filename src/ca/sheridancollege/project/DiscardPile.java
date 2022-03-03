@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author Jayson Evans
  * @author Ryan Stewart
  */
-public class DiscardPile extends GroupOfCards
+public final class DiscardPile extends GroupOfCards
 {
 
     private Scanner input = new Scanner(System.in);
