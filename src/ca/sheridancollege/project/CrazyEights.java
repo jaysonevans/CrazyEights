@@ -74,8 +74,16 @@ public final class CrazyEights extends Game
         // 8. Create the discard pile and give one card to it
         DiscardPile discardPile = new DiscardPile(startingCard);
         
-        stockPile.printPile();
-        discardPile.printPile();
+        // 9. Deal the cards
+        
+        
+        // 10. Start the main game loop
+        boolean noWinner = true;
+        
+        while (noWinner)
+        {
+            
+        }
     }
     
     public static void main(String[] args)

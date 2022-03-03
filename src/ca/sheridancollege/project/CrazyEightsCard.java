@@ -5,7 +5,7 @@ package ca.sheridancollege.project;
  *
  * @author Jayson Evans Feb 2022
  */
-public final class CrazyEightsCard extends Card
+public final class CrazyEightsCard extends Card implements Comparable<CrazyEightsCard>
 {
     private Suit suit;
     private Value value;
@@ -52,5 +52,22 @@ public final class CrazyEightsCard extends Card
     public String toString()
     {
         return value.name() + " of " + suit.name();
+    }
+    
+    @Override
+    public int compareTo(CrazyEightsCard otherCard)
+    {
+        if (value.ordinal() > otherCard.getValue().ordinal())
+        {
+            return 1;
+        }
+        else if (value.ordinal() < otherCard.getValue().ordinal())
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }
