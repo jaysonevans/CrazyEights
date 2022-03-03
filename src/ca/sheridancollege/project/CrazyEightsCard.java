@@ -65,6 +65,17 @@ public final class CrazyEightsCard extends Card implements Comparable<CrazyEight
         {
             return -1;
         }
+        else if (value.ordinal() == otherCard.getValue().ordinal())
+        {
+            if (suit.ordinal() > otherCard.getSuit().ordinal())
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
         else
         {
             return 0;

@@ -34,7 +34,7 @@ public final class ComputerPlayer extends Player
         Collections.sort(hand);
         for (CrazyEightsCard card: hand)
         {
-            System.out.println(card);
+            System.out.printf("%-6sof %s\n", card.getValue(), card.getSuit());
         }
     }
 }

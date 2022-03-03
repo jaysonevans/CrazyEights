@@ -77,7 +77,7 @@ public final class StockPile extends GroupOfCards
         System.out.println("The stock pile contains:");
         for (CrazyEightsCard card: cards)
         {
-            System.out.println(card);
+            System.out.printf("%-6sof %s\n", card.getValue(), card.getSuit());
         }
     }
 }
