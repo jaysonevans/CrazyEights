@@ -3,7 +3,10 @@
  * Students can modify and extend to implement their game.
  * Add your name as an author and the date!
  */
-package ca.sheridancollege.project;
+package players;
+
+import game.DiscardPile;
+import game.StockPile;
 
 /**
  * A class that models each Player in the game. Players have an identifier, which should be unique.
@@ -11,6 +14,7 @@ package ca.sheridancollege.project;
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  * @author Jayson Evans Feb 2022
+ * @author Justin Beaulne March 2022 
  */
 public abstract class Player implements Cloneable
 {
@@ -49,7 +53,7 @@ public abstract class Player implements Cloneable
      * @return a copy of the player object
      */
     @Override
-    protected Object clone() throws CloneNotSupportedException
+    public Object clone() throws CloneNotSupportedException
     {
         return super.clone();
     }

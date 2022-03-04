@@ -1,5 +1,9 @@
-package ca.sheridancollege.project;
+package game;
 
+import cards.GroupOfCards;
+import cards.Value;
+import cards.Suit;
+import cards.CrazyEightsCard;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -8,6 +12,7 @@ import java.util.ArrayList;
  *
  * @author Jayson Evans
  * @author Ryan Stewart
+ * @author Justin Beaulne March 2022 
  */
 public final class DiscardPile extends GroupOfCards
 {

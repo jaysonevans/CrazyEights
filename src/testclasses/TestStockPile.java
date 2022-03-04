@@ -1,9 +1,15 @@
-package ca.sheridancollege.project;
+package testclasses;
+
+import game.StockPile;
+import cards.Value;
+import cards.Suit;
+import cards.CrazyEightsCard;
 
 /**
  * This class +++ Insert class description here +++
  *
  * @author Jayson Evans
+ * @author Justin Beaulne 
  */
 public class TestStockPile 
 {

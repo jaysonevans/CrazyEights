@@ -1,4 +1,4 @@
-package ca.sheridancollege.project;
+package cards;
 
 /**
  * This class contains the enumerated type constants for the card values.

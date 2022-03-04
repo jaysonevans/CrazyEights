@@ -3,8 +3,9 @@
  * Students can modify and extend to implement their game.
  * Add your name as an author and the date!
  */
-package ca.sheridancollege.project;
+package game;
 
+import players.Player;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +15,7 @@ import java.util.ArrayList;
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  * @author Jayson Evans Feb 2022
+ * @author Justin Beaulne March 2022 
  */
 public abstract class Game implements Cloneable
 {

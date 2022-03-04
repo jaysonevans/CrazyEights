@@ -1,5 +1,8 @@
-package ca.sheridancollege.project;
+package players;
 
+import game.DiscardPile;
+import game.StockPile;
+import cards.CrazyEightsCard;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -7,6 +10,7 @@ import java.util.Collections;
  * This class represents an AI player.
  *
  * @author Jayson Evans
+ * @author Justin Beaulne 
  */
 public final class ComputerPlayer extends Player
 {

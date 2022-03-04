@@ -1,9 +1,12 @@
-package ca.sheridancollege.project;
+package cards;
+
+import cards.Card;
 
 /**
  * This class models the cards used in the Crazy Eights game.
  *
  * @author Jayson Evans Feb 2022
+ * @author Justin Beaulne March 2022 
  */
 public final class CrazyEightsCard extends Card implements Comparable<CrazyEightsCard>
 {

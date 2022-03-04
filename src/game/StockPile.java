@@ -1,5 +1,9 @@
-package ca.sheridancollege.project;
+package game;
 
+import cards.GroupOfCards;
+import cards.Value;
+import cards.Suit;
+import cards.CrazyEightsCard;
 import java.util.Collections;
 
 /**
@@ -7,6 +11,7 @@ import java.util.Collections;
  *
  * @author Jayson Evans
  * @author Ryan Stewart
+ * @author Justin Beaulne 
  */
 public final class StockPile extends GroupOfCards
 {

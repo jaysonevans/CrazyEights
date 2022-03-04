@@ -1,5 +1,8 @@
-package ca.sheridancollege.project;
+package players;
 
+import game.DiscardPile;
+import game.StockPile;
+import cards.CrazyEightsCard;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -8,6 +11,7 @@ import java.util.Scanner;
  * This class represents a human player.
  *
  * @author Jayson Evans
+ * @author Justin Beaulne 
  */
 public final class HumanPlayer extends Player
 {

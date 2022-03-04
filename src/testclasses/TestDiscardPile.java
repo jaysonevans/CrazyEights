@@ -1,9 +1,15 @@
-package ca.sheridancollege.project;
+package testclasses;
+
+import game.DiscardPile;
+import cards.Value;
+import cards.Suit;
+import cards.CrazyEightsCard;
 
 /**
  * This class tests the discard pile class.
  *
  * @author Jayson Evans
+ * @author Justin Beaulne 
  */
 public class TestDiscardPile
 {

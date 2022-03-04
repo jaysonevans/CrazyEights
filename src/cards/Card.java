@@ -3,7 +3,7 @@
  * Students can modify and extend to implement their game.
  * Add your name as an author and the date!
  */
-package ca.sheridancollege.project;
+package cards;
 
 /**
  * A class to be used as the base Card class for the project. Must be general enough to be instantiated for any Card
@@ -11,6 +11,7 @@ package ca.sheridancollege.project;
  *
  * @author dancye
  * @author Jayson Evans Feb 2022
+ * @author Justin Beaulne March 2022 
  */
 public abstract class Card
 {
