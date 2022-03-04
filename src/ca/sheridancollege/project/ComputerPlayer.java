@@ -27,8 +27,9 @@ public final class ComputerPlayer extends Player
      * To be called by the game to initiate the
      * computer's turn. Does not require user input.
      */
-    public void play()
+    public void play(DiscardPile discardPile, StockPile stockPile)
     {
+        System.out.println("The top card is " + discardPile.getTopCard());
     }
     
     /**
@@ -37,6 +38,14 @@ public final class ComputerPlayer extends Player
     public void addToHand(CrazyEightsCard card)
     {
         hand.add(card);
+    }
+     
+    /**
+     * @return the size of the player's hand
+     */
+    public int getHandSize()
+    {
+        return hand.size();
     }
     
     /**

@@ -1,6 +1,7 @@
 package ca.sheridancollege.project;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * This class represents the discard pile in a game of Crazy Eights.
@@ -123,7 +124,7 @@ public final class DiscardPile extends GroupOfCards
     {
         CrazyEightsCard topCard = getTopCard();
         
-        return ( card.getSuit() == topCard.getSuit() || card.getValue() == topCard.getValue() );
+        return ( card.getSuit() == topCard.getSuit() || card.getValue() == topCard.getValue());
     }
     
     /**
@@ -230,5 +231,44 @@ public final class DiscardPile extends GroupOfCards
         cards.clear();
         
         cards.add(card);
+    }
+    
+    /**
+     * @param hand the user's cards
+     * @return 
+     */
+    public boolean hasMatch(ArrayList<CrazyEightsCard> hand)
+    {  
+        for (CrazyEightsCard card: hand)
+        {
+            if (topCardMatches(card))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * To check whether the user can enter a second card.
+     * 
+     * @param hand the user's cards
+     * @return true if the value of the top card and one of
+     * the user's cards match
+     */
+    public boolean hasValueMatch(ArrayList<CrazyEightsCard> hand)
+    {
+        CrazyEightsCard topCard = getTopCard();
+        
+        for (CrazyEightsCard card: hand)
+        {
+            if (card.getValue().ordinal() == topCard.getValue().ordinal())
+            {
+                System.out.println(card);
+                return true;
+            }
+        }
+        
+        return false;
     }
 }

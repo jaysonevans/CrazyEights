@@ -123,6 +123,7 @@ public final class CrazyEights extends Game
         
         while (noWinner)
         {
+            humanPlayer.play(discardPile, stockPile);
             // End the game loop for testing
             noWinner = false;
         }
