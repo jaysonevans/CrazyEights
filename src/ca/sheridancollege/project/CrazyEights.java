@@ -119,14 +119,6 @@ public final class CrazyEights extends Game
             com.addToHand(card);
         }
         
-        humanPlayer.printHand();
-        System.out.println();
-        com.printHand();
-        System.out.println();
-        stockPile.printPile();
-        System.out.println();
-        discardPile.printPile();
-        
         // 10. Start the main game loop
         boolean noWinner = true;
         

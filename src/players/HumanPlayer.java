@@ -30,6 +30,9 @@ public final class HumanPlayer extends Player
     /**
      * To be called by the game to initiate the
      * player's turn. Requires user input.
+     * 
+     * @param discardPile the pile where cards are discarded
+     * @param stockPile the stock of cards for pick ups
      */
     public void play(DiscardPile discardPile, StockPile stockPile)
     {
@@ -48,29 +51,51 @@ public final class HumanPlayer extends Player
         
                 int cardNumber = input.nextInt();
                 
-                discardPile.add(hand.get(cardNumber));
-                
-                removeFromHand(cardNumber);
-                
-                if (discardPile.hasValueMatch(hand))
+                if (isInRange(cardNumber))
                 {
-                    System.out.println("Would you like to enter another card (y/n [default]):");
-            
-                    String answer = input.next();
+                
+                    discardPile.add(hand.get(cardNumber));
                     
-                    if (!answer.equalsIgnoreCase("y"))
+                    if (discardPile.isAddSuccessful())
                     {
-                        entering = false;
+                        CrazyEightsCard card = hand.get(cardNumber);
+                        
+                        removeFromHand(cardNumber);
+                        
+                        System.out.println("You used " + card + "!");
+
+                        if (discardPile.hasValueMatch(hand)) 
+                        {
+                            System.out.println("Would you like to enter another card (y/n [default]):");
+
+                            String answer = input.next();
+
+                            if (!answer.equalsIgnoreCase("y")) 
+                            {
+                                entering = false;
+                            }
+                        } 
+                        
+                        else 
+                        {
+                            entering = false;
+                        }
+                    }
+                    
+                    else
+                    {
+                        System.out.println("Please try again.");
                     }
                 }
+                
                 else
                 {
-                    entering = false;
-                }
-                        
-
+                    System.out.println("Must enter the correct number corresponding to a card in your hand");
+                } 
+                
             } while (entering);
         }
+        
         else
         {
             System.out.println(getName() + " has no moves.");
@@ -84,6 +109,7 @@ public final class HumanPlayer extends Player
             
             addToHand(stockPile.pickUp());
         }
+        
     }
     
     /**
@@ -124,7 +150,7 @@ public final class HumanPlayer extends Player
      * @param cardNumber the index number of the card in hand
      * @return true if the card number is within the limits of the hand
      */
-    public boolean inRange(int cardNumber)
+    public boolean isInRange(int cardNumber)
     {
         return 0 <= cardNumber && cardNumber < hand.size();
     }

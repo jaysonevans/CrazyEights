@@ -21,7 +21,7 @@ public abstract class Game implements Cloneable
 {
 
     private final String name;//the title of the game
-    private ArrayList<Player> players;// the players of the game
+    protected ArrayList<Player> players;// the players of the game
 
     public Game(String name)
     {
