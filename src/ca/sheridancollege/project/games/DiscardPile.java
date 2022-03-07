@@ -1,9 +1,9 @@
-package game;
+package ca.sheridancollege.project.games;
 
-import cards.GroupOfCards;
-import cards.Value;
-import cards.Suit;
-import cards.CrazyEightsCard;
+import ca.sheridancollege.project.cards.GroupOfCards;
+import ca.sheridancollege.project.cards.Value;
+import ca.sheridancollege.project.cards.Suit;
+import ca.sheridancollege.project.cards.CrazyEightsCard;
 import java.util.Scanner;
 import java.util.ArrayList;
 

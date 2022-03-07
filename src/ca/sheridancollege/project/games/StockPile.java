@@ -1,9 +1,9 @@
-package game;
+package ca.sheridancollege.project.games;
 
-import cards.GroupOfCards;
-import cards.Value;
-import cards.Suit;
-import cards.CrazyEightsCard;
+import ca.sheridancollege.project.cards.GroupOfCards;
+import ca.sheridancollege.project.cards.Value;
+import ca.sheridancollege.project.cards.Suit;
+import ca.sheridancollege.project.cards.CrazyEightsCard;
 import java.util.Collections;
 
 /**
@@ -55,7 +55,7 @@ public final class StockPile extends GroupOfCards
         else 
         {
             CrazyEightsCard card = cards.get(cards.size() - 1);
-        
+         
             cards.remove(cards.size() - 1);
      
             return card;
@@ -111,6 +111,7 @@ public final class StockPile extends GroupOfCards
     public void printPile()
     {
         Collections.sort(cards);
+        //Collections.shuffle(cards);
         
         System.out.println("The stock pile contains:");
         for (CrazyEightsCard card: cards)

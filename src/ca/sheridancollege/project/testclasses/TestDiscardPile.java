@@ -1,9 +1,9 @@
-package testclasses;
+package ca.sheridancollege.project.testclasses;
 
-import game.DiscardPile;
-import cards.Value;
-import cards.Suit;
-import cards.CrazyEightsCard;
+import ca.sheridancollege.project.games.DiscardPile;
+import ca.sheridancollege.project.cards.Value;
+import ca.sheridancollege.project.cards.Suit;
+import ca.sheridancollege.project.cards.CrazyEightsCard;
 
 /**
  * This class tests the discard pile class.

@@ -3,10 +3,10 @@
  * Students can modify and extend to implement their game.
  * Add your name as an author and the date!
  */
-package players;
+package ca.sheridancollege.project.players;
 
-import game.DiscardPile;
-import game.StockPile;
+import ca.sheridancollege.project.games.DiscardPile;
+import ca.sheridancollege.project.games.StockPile;
 
 /**
  * A class that models each Player in the game. Players have an identifier, which should be unique.

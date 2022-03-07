@@ -3,9 +3,9 @@
  * Students can modify and extend to implement their game.
  * Add your name as an author and the date!
  */
-package game;
+package ca.sheridancollege.project.games;
 
-import players.Player;
+import ca.sheridancollege.project.players.Player;
 import java.util.ArrayList;
 
 /**

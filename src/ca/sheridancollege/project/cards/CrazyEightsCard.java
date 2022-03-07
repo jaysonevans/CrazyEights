@@ -1,6 +1,4 @@
-package cards;
-
-import cards.Card;
+package ca.sheridancollege.project.cards;
 
 /**
  * This class models the cards used in the Crazy Eights game.

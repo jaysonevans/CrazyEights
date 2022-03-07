@@ -1,14 +1,12 @@
-package ca.sheridancollege.project;
+package ca.sheridancollege.project.games;
 
-import game.DiscardPile;
-import game.StockPile;
-import players.ComputerPlayer;
-import game.Game;
-import cards.Value;
-import players.HumanPlayer;
-import players.Player;
-import cards.Suit;
-import cards.CrazyEightsCard;
+
+import ca.sheridancollege.project.players.ComputerPlayer;
+import ca.sheridancollege.project.cards.Value;
+import ca.sheridancollege.project.players.HumanPlayer;
+import ca.sheridancollege.project.players.Player;
+import ca.sheridancollege.project.cards.Suit;
+import ca.sheridancollege.project.cards.CrazyEightsCard;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
