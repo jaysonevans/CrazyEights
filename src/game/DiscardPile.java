@@ -269,7 +269,6 @@ public final class DiscardPile extends GroupOfCards
         {
             if (card.getValue().ordinal() == topCard.getValue().ordinal())
             {
-                System.out.println(card);
                 return true;
             }
         }
