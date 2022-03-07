@@ -22,6 +22,7 @@ public class TestTwoCard
     //some notes for things i need to add 
     // need to add logic of how many cards player puts down for the method to check that many cards in discard pile 
     // need to add the method to trigger everytime card is played?
+    //add variable to player to check cards put down 
 
     public static void main (String[]args)
     {
