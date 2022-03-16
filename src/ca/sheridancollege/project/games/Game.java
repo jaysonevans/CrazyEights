@@ -5,6 +5,10 @@
  */
 package ca.sheridancollege.project.games;
 
+import ca.sheridancollege.project.cards.CrazyEightsCard;
+import ca.sheridancollege.project.cards.Suit;
+import ca.sheridancollege.project.cards.Value;
+import ca.sheridancollege.project.players.HumanPlayer;
 import ca.sheridancollege.project.players.Player;
 import java.util.ArrayList;
 
@@ -78,5 +82,39 @@ public abstract class Game implements Cloneable
      * When the game is over, use this method to declare and display a winning player.
      */
     public abstract void declareWinner();
+    
+    public int checkAdditionCards (HumanPlayer player, DiscardPile discardPile, StockPile stockPile)
+    {
+        int CardPickUps = 0;
+        
+        //creating 2 cards to check aganist 
+        CrazyEightsCard twoHearts   = new CrazyEightsCard(Suit.values()[0], Value.values()[1]);
+        
+        //creating queen of spades to check aganist 
+        CrazyEightsCard queenSpades = new CrazyEightsCard(Suit.values()[2], Value.values()[11]);
+        
+        for(int i = 0; i <= player.cardsPlaced; i++)
+        {
+            
+            if(discardPile.getCards().get(i).getValue().equals(twoHearts.getValue()))
+           {
+            CardPickUps += 2;
+           }
+           else if (discardPile.getCards().get(i).getValue().equals(queenSpades.getValue()) 
+             && discardPile.getCards().get(i).getSuit().equals(queenSpades.getSuit()))
+           {
+            CardPickUps += 5;
+            }
+        }
+        return CardPickUps;
+    }
+    
+    public void PickUpCards(int CardPickUps, Player player, StockPile stockPile)
+    {
+        for(int i = 0; i < CardPickUps; i++)
+        {
+            player.addToHand(stockPile.pickUp());
+        }
+    }
 
 }//end class

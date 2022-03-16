@@ -59,7 +59,7 @@ public final class HumanPlayer extends Player
                     if (discardPile.isAddSuccessful())
                     {
                         CrazyEightsCard card = hand.get(cardNumber);
-                        
+                        cardsPlaced++;
                         removeFromHand(cardNumber);
                         
                         System.out.println("You used " + card + "!");
