@@ -1,6 +1,8 @@
-package ca.sheridancollege.project.games;
+package ca.sheridancollege.project.game;
 
 
+import ca.sheridancollege.project.cards.StockPile;
+import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.players.ComputerPlayer;
 import ca.sheridancollege.project.cards.Value;
 import ca.sheridancollege.project.players.HumanPlayer;

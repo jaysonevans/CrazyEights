@@ -6,8 +6,8 @@
 package ca.sheridancollege.project.players;
 
 import ca.sheridancollege.project.cards.CrazyEightsCard;
-import ca.sheridancollege.project.games.DiscardPile;
-import ca.sheridancollege.project.games.StockPile;
+import ca.sheridancollege.project.cards.DiscardPile;
+import ca.sheridancollege.project.cards.StockPile;
 import java.util.ArrayList;
 
 /**

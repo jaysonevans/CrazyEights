@@ -1,4 +1,4 @@
-package ca.sheridancollege.project.games;
+package ca.sheridancollege.project.cards;
 
 import ca.sheridancollege.project.cards.GroupOfCards;
 import ca.sheridancollege.project.cards.Value;

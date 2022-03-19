@@ -3,8 +3,10 @@
  * Students can modify and extend to implement their game.
  * Add your name as an author and the date!
  */
-package ca.sheridancollege.project.games;
+package ca.sheridancollege.project.game;
 
+import ca.sheridancollege.project.cards.StockPile;
+import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
 import ca.sheridancollege.project.cards.Suit;
 import ca.sheridancollege.project.cards.Value;

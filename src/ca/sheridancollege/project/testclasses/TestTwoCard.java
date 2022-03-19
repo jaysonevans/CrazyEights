@@ -2,13 +2,12 @@
 
 package ca.sheridancollege.project.testclasses;
 
-import static ca.sheridancollege.project.games.CrazyEights.NUMBER_OF_STARTING_CARDS;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
 import ca.sheridancollege.project.cards.Suit;
 import ca.sheridancollege.project.cards.Value;
-import ca.sheridancollege.project.games.CrazyEights;
-import ca.sheridancollege.project.games.DiscardPile;
-import ca.sheridancollege.project.games.StockPile;
+import ca.sheridancollege.project.game.CrazyEights;
+import ca.sheridancollege.project.cards.DiscardPile;
+import ca.sheridancollege.project.cards.StockPile;
 import ca.sheridancollege.project.players.ComputerPlayer;
 import java.util.Random;
 import ca.sheridancollege.project.players.HumanPlayer;
@@ -21,14 +20,11 @@ import ca.sheridancollege.project.players.HumanPlayer;
  */
 public class TestTwoCard 
 {
-    //some notes for things i need to add 
-    // need to add logic of how many cards player puts down for the method to check that many cards in discard pile 
-    // need to add the method to trigger everytime card is played?
-    //add variable to player to check cards put down 
+    public static final int NUMBER_OF_STARTING_CARDS = 8;
 
     public static void main (String[]args)
     {
-           
+       
         Random random = new Random();
         
         Value randomValue = Value.values()[random.nextInt(Value.values().length)];

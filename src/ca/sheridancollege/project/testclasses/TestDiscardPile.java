@@ -1,6 +1,6 @@
 package ca.sheridancollege.project.testclasses;
 
-import ca.sheridancollege.project.games.DiscardPile;
+import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.Value;
 import ca.sheridancollege.project.cards.Suit;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
