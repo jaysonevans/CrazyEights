@@ -87,7 +87,15 @@ public final class HumanPlayer extends Player
                         System.out.println("Please try again.");
                     }
                 }
-                
+                else if( terminateGame(cardNumber))
+                            {
+                                System.out.println("Are you sure you wanna end the game? (y/n):");
+                                String confirm = input.next();
+                                if(confirm.equalsIgnoreCase("y"))
+                                {
+                                   System.exit(0);
+                                }
+                            }
                 else
                 {
                     System.out.println("Must enter the correct number corresponding to a card in your hand");
@@ -153,5 +161,10 @@ public final class HumanPlayer extends Player
     public boolean isInRange(int cardNumber)
     {
         return 0 <= cardNumber && cardNumber < hand.size();
+    }
+    
+    public boolean terminateGame(int answer)
+    {
+      return answer < 0;
     }
 }

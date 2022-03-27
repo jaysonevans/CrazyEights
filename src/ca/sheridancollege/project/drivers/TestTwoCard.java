@@ -1,6 +1,6 @@
 
 
-package ca.sheridancollege.project.testclasses;
+package ca.sheridancollege.project.drivers;
 
 import ca.sheridancollege.project.cards.CrazyEightsCard;
 import ca.sheridancollege.project.cards.Suit;
@@ -97,7 +97,7 @@ public class TestTwoCard
         // checks the number of cards the players played then check if there was any 2s or queens
         int cardPickUps = new CrazyEights().checkAdditionCards(humanPlayer, discardPile, stockPile);
         //if there is any cards to be picked up this makes the player or computer pick them up 
-        new CrazyEights().PickUpCards(cardPickUps, com, stockPile);
+        new CrazyEights().pickUpCards(cardPickUps, com, stockPile);
         System.out.println(cardPickUps);
         System.out.println();
         com.printHand();

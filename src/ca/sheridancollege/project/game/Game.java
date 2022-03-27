@@ -111,7 +111,7 @@ public abstract class Game implements Cloneable
         return CardPickUps;
     }
     
-    public void PickUpCards(int CardPickUps, Player player, StockPile stockPile)
+    public void pickUpCards(int CardPickUps, Player player, StockPile stockPile)
     {
         for(int i = 0; i < CardPickUps; i++)
         {

@@ -1,9 +1,6 @@
 package ca.sheridancollege.project.cards;
 
-import ca.sheridancollege.project.cards.GroupOfCards;
-import ca.sheridancollege.project.cards.Value;
-import ca.sheridancollege.project.cards.Suit;
-import ca.sheridancollege.project.cards.CrazyEightsCard;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
