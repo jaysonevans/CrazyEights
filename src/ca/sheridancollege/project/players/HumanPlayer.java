@@ -34,9 +34,12 @@ public final class HumanPlayer extends Player
      * @param discardPile the pile where cards are discarded
      * @param stockPile the stock of cards for pick ups
      */
+    @Override
     public void play(DiscardPile discardPile, StockPile stockPile)
     {
+        boolean quitCheck = true;
         boolean entering = true;
+        int cardNumber = 0;
         
         System.out.println("The top card is " + discardPile.getTopCard() +"\n");
         
@@ -45,11 +48,60 @@ public final class HumanPlayer extends Player
 
             do
             {
-                printHand();
+                do
+                {
+                    printHand();
                 
-                System.out.print("Enter a card: ");
+                    System.out.print("Enter a card: ");
         
-                int cardNumber = input.nextInt();
+                    String userNumInput = input.next();
+                    
+                    char numValue = userNumInput.charAt(0);
+                    if(!Character.isDigit(numValue))
+                    {
+                        if (numValue == 'q' || numValue == 'Q')
+                        {
+                            System.out.println("Are you sure you wanna end the game? (y/n):");
+                            String confirm = input.next();
+                            if(confirm.equalsIgnoreCase("y"))
+                            {
+                                System.exit(0);
+                            }
+                            else
+                            {
+                                System.out.println("The top card is " + discardPile.getTopCard() +"\n");
+                                quitCheck = true;
+                                
+                            }
+                        }
+                        else
+                        {
+                        System.out.println("Please enter a card number or a Q to quit the game");
+                        }
+                  
+                    }
+                    else 
+                    {
+                        try
+                        {
+                        cardNumber = Integer.parseInt(userNumInput);
+                        if((!isInRange(cardNumber)))
+                        {
+                            quitCheck = false;
+                        }
+                        
+                        else
+                        {
+                            System.out.println("\"Must enter the correct number corresponding to a card in your hand\"");
+                        }
+                        }
+                        catch(NumberFormatException nef)
+                        {
+                            System.out.println("Error: Must enter the correct number corresponding to a card in your hand");
+                        }
+                        
+                     }
+                }while(quitCheck);
                 
                 if (isInRange(cardNumber))
                 {
@@ -87,15 +139,6 @@ public final class HumanPlayer extends Player
                         System.out.println("Please try again.");
                     }
                 }
-                else if( terminateGame(cardNumber))
-                            {
-                                System.out.println("Are you sure you wanna end the game? (y/n):");
-                                String confirm = input.next();
-                                if(confirm.equalsIgnoreCase("y"))
-                                {
-                                   System.exit(0);
-                                }
-                            }
                 else
                 {
                     System.out.println("Must enter the correct number corresponding to a card in your hand");
@@ -162,9 +205,5 @@ public final class HumanPlayer extends Player
     {
         return 0 <= cardNumber && cardNumber < hand.size();
     }
-    
-    public boolean terminateGame(int answer)
-    {
-      return answer < 0;
-    }
+   
 }

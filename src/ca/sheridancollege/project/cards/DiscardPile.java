@@ -3,6 +3,7 @@ package ca.sheridancollege.project.cards;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * This class represents the discard pile in a game of Crazy Eights.
@@ -71,13 +72,42 @@ public final class DiscardPile extends GroupOfCards
         if (cards.isEmpty())
         {
             cards.add(card);
-            addSuccessful = true;
+            addSuccessful = true;          
         }
         else 
         {   
             if (cardIsEight(card))
             {
                 addEight(card);
+                addSuccessful = true;
+            }
+            else if (topCardMatches(card))
+            {
+                cards.add(card);
+                addSuccessful = true;
+            }
+            else
+            {
+                printCardDoesNotMatch(card);
+                addSuccessful = false;
+            }
+        }
+    }
+    // used for the computer opponent to hand eight cards 
+    public void add(CrazyEightsCard card, String name)
+    {
+        // For the first card added to the pile when starting the game
+        if (cards.isEmpty())
+        {
+            cards.add(card);
+            addSuccessful = true;
+            
+        }
+        else 
+        {   
+            if (cardIsEight(card))
+            {
+                addEight(card, name);
                 addSuccessful = true;
             }
             else if (topCardMatches(card))
@@ -162,6 +192,7 @@ public final class DiscardPile extends GroupOfCards
         // Get the suit from the user and validate it
         while (go)
         {
+            
             promptForSuit();
             
             int newSuit = input.nextInt(); // Get the inputted suit number
@@ -192,6 +223,47 @@ public final class DiscardPile extends GroupOfCards
             }
         }
         
+        cards.add(card); // Add the modified card to the pile
+    }
+    
+     public void addEight(CrazyEightsCard card, String name)
+    {
+        boolean go = true; // sentinel value to ensure a correct suit number was entered
+        
+        // Get the suit from the user and validate it
+        while (go)
+        {
+            promptForSuit();
+            Random random = new Random();
+            int newSuit = random.nextInt(NUMBER_OF_SUITS - 1);
+            
+            
+            // Find the corresponding suit
+            // If no suit matches, report an error
+            switch (newSuit)
+            {
+                case 0:
+                    card.setSuit(Suit.HEARTS);
+                    go = false;
+                    break;
+                case 1:
+                    card.setSuit(Suit.CLUBS);
+                    go = false;
+                    break;
+                case 2:
+                    card.setSuit(Suit.SPADES);
+                    go = false;
+                    break;
+                case 3:
+                    card.setSuit(Suit.DIAMONDS);
+                    go = false;
+                    break;
+                default:
+                    System.out.println("Error: must enter the correct number of the corresponding suit");
+                    break;
+            }
+        }
+        System.out.println(name + " Changed the suit to " + card.getSuit());
         cards.add(card); // Add the modified card to the pile
     }
     

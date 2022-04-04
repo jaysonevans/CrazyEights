@@ -52,7 +52,7 @@ public final class CrazyEights extends Game
                 "4. Queen of Spades on top of the discard pile makes the next player pick up 5 cards.",
                 "5. Two makes the next player pick up two.",
                 "6. Twos stack",
-                "7. Enter a negative number to terminate the game");
+                "7. Enter a Q  to terminate the game");
     }
     
     @Override
