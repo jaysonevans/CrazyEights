@@ -83,7 +83,7 @@ public abstract class Game implements Cloneable
     /**
      * When the game is over, use this method to declare and display a winning player.
      */
-    public abstract void declareWinner();
+    public abstract Player checkForWinner(ArrayList<Player> players);
     
     public int checkAdditionCards (HumanPlayer player, DiscardPile discardPile, StockPile stockPile)
     {

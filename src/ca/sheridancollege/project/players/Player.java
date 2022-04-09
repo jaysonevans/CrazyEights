@@ -23,7 +23,7 @@ public abstract class Player implements Cloneable
 
     private String name; //the unique name for this player
     public int cardsPlaced = 0;
-    private ArrayList<CrazyEightsCard> hand = new ArrayList<>();
+    protected ArrayList<CrazyEightsCard> hand = new ArrayList<>();
 
     /**
      * A constructor that allows you to set the player's unique ID
@@ -71,6 +71,14 @@ public abstract class Player implements Cloneable
       public void addToHand(CrazyEightsCard card)
     {
         hand.add(card);
+    }
+
+    /**
+     * @return the size of the player's hand
+     */
+    public int getHandSize()
+    {
+        return hand.size();
     }
 
 }

@@ -53,12 +53,22 @@ public final class CrazyEights extends Game
                 "5. Queen of Spades on top of the discard pile makes the next player pick up 5 cards.",
                 "6. Two makes the next player pick up two.",
                 "7. Twos stack",
-                "8. Enter a Q  to terminate the game");
+                "8. Enter a Q  to terminate the game\n");
     }
     
     @Override
-    public void declareWinner()
+    public Player checkForWinner(ArrayList<Player> players)
     {
+
+        for (Player ply: players)
+        {
+            if (ply.getHandSize() <= 0)
+            {
+                return ply;
+            }
+        }
+
+        return null;
     }
     
     /**
@@ -91,6 +101,7 @@ public final class CrazyEights extends Game
         
         // 5. Create the opponent
         ComputerPlayer com = new ComputerPlayer("COM");
+        tempPlayers.add(com);
         
         // 6. Generate a random card
         Random random = new Random();
@@ -127,6 +138,12 @@ public final class CrazyEights extends Game
         //playing 10 rounds of player vs com
         for(int i = 0; i < 10; i++)
         {
+            Player winner = checkForWinner(tempPlayers);
+            if (winner != null)
+            {
+                System.out.println(winner.getName() + " has won the game!");
+                break;
+            }
             humanPlayer.play(discardPile, stockPile);
             com.play(discardPile, stockPile);
             // End the game loop for testing

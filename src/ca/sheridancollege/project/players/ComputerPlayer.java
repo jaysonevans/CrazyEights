@@ -15,7 +15,7 @@ import java.util.Collections;
 public final class ComputerPlayer extends Player
 {
     
-    private ArrayList<CrazyEightsCard> hand = new ArrayList<>();
+    //private ArrayList<CrazyEightsCard> hand = new ArrayList<>();
     
     /**
      * @param name to pass to the Player class
@@ -111,14 +111,6 @@ public final class ComputerPlayer extends Player
     public void addToHand(CrazyEightsCard card)
     {
         hand.add(card);
-    }
-     
-    /**
-     * @return the size of the player's hand
-     */
-    public int getHandSize()
-    {
-        return hand.size();
     }
     
     /**

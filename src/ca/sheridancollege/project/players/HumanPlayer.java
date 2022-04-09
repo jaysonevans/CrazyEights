@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public final class HumanPlayer extends Player
 {
-    private ArrayList<CrazyEightsCard> hand = new ArrayList<>();
+    //private ArrayList<CrazyEightsCard> hand = new ArrayList<>();
     private Scanner input = new Scanner(System.in);
     
     /**
@@ -41,7 +41,7 @@ public final class HumanPlayer extends Player
         boolean entering = true;
         int cardNumber = 0;
         
-        System.out.println("The top card is " + discardPile.getTopCard() +"\n");
+        System.out.println("\nThe top card is " + discardPile.getTopCard() +"\n");
         
         if (discardPile.hasMatch(hand))
         {
@@ -177,14 +177,6 @@ public final class HumanPlayer extends Player
     public void removeFromHand(int index)
     {
         hand.remove(index);
-    }
-    
-    /**
-     * @return the size of the player's hand
-     */
-    public int getHandSize()
-    {
-        return hand.size();
     }
     
     /**
