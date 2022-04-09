@@ -85,7 +85,8 @@ public final class HumanPlayer extends Player
                         try
                         {
                         cardNumber = Integer.parseInt(userNumInput);
-                        if((!isInRange(cardNumber)))
+                         
+                        if((isInRange(cardNumber)))
                         {
                             quitCheck = false;
                         }
@@ -93,11 +94,13 @@ public final class HumanPlayer extends Player
                         else
                         {
                             System.out.println("\"Must enter the correct number corresponding to a card in your hand\"");
+                           
                         }
                         }
                         catch(NumberFormatException nef)
                         {
                             System.out.println("Error: Must enter the correct number corresponding to a card in your hand");
+                            
                         }
                         
                      }

@@ -45,14 +45,15 @@ public final class CrazyEights extends Game
     public void displayRules()
     {
         System.out.println("Here are the rules: ");
-        System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n",
+        System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s",
                 "1. Get rid of the cards in your hand.",
                 "2. You can place any card with a matching suit or value.",
-                "3. You can play down multiple cards of the same value on the same turn.",
-                "4. Queen of Spades on top of the discard pile makes the next player pick up 5 cards.",
-                "5. Two makes the next player pick up two.",
-                "6. Twos stack",
-                "7. Enter a Q  to terminate the game");
+                "3. Eight cards change the suit of the top card.",
+                "4. You can play down multiple cards of the same value on the same turn.",
+                "5. Queen of Spades on top of the discard pile makes the next player pick up 5 cards.",
+                "6. Two makes the next player pick up two.",
+                "7. Twos stack",
+                "8. Enter a Q  to terminate the game");
     }
     
     @Override
@@ -122,13 +123,14 @@ public final class CrazyEights extends Game
         }
         
         // 10. Start the main game loop
-        boolean noWinner = true;
-        
-        while (noWinner)
+        //boolean noWinner = true;
+        //playing 10 rounds of player vs com
+        for(int i = 0; i < 10; i++)
         {
             humanPlayer.play(discardPile, stockPile);
+            com.play(discardPile, stockPile);
             // End the game loop for testing
-            noWinner = false;
+            //noWinner = false;
         }
     }
     
