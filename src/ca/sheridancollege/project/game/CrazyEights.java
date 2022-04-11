@@ -3,12 +3,12 @@ package ca.sheridancollege.project.game;
 
 import ca.sheridancollege.project.cards.StockPile;
 import ca.sheridancollege.project.cards.DiscardPile;
-import ca.sheridancollege.project.players.ComputerPlayer;
+import ca.sheridancollege.project.cards.Suit;
 import ca.sheridancollege.project.cards.Value;
+import ca.sheridancollege.project.cards.CrazyEightsCard;
+import ca.sheridancollege.project.players.ComputerPlayer;
 import ca.sheridancollege.project.players.HumanPlayer;
 import ca.sheridancollege.project.players.Player;
-import ca.sheridancollege.project.cards.Suit;
-import ca.sheridancollege.project.cards.CrazyEightsCard;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
@@ -70,6 +70,17 @@ public final class CrazyEights extends Game
 
         return null;
     }
+
+    /**
+     *  @param 
+     */
+    public void createComputerPlayers(int numberOfOpponents, ArrayList<Player> players)
+    {
+        for (int i = 1; i <= numberOfOpponents; i++)
+        {
+            players.add(new ComputerPlayer("COM" + i));
+        }
+    }
     
     /**
      * Does the heavy lifting in coordinating 
@@ -83,27 +94,34 @@ public final class CrazyEights extends Game
     @Override
     public void play()
     {
-        // 1. Create a Scanner and ArrayList
+        // Create a Scanner and ArrayList
         Scanner input = new Scanner(System.in);
-        ArrayList<Player> tempPlayers = new ArrayList<>(); 
+        ArrayList<Player> players = new ArrayList<>(); 
         
-        // 2. Prompt for the name of the player
+        // Prompt for the name of the player
         System.out.print("Enter your name: ");
         String name = input.nextLine();
         
-        // 3. Instantiate the player
+        // Instantiate the player
         HumanPlayer humanPlayer = new HumanPlayer(name);
-        tempPlayers.add(humanPlayer);
+        players.add(humanPlayer);
         
-        // 4. Display a welcome message to the player and print the rules
+        // Display a welcome message to the player and print the rules
         System.out.println("\nGreetings, " + humanPlayer.getName() + ".\nWelcome to " + getName() + ".");
         displayRules();
         
-        // 5. Create the opponent
-        ComputerPlayer com = new ComputerPlayer("COM");
-        tempPlayers.add(com);
+        // Create the opponent
+        //ComputerPlayer com = new ComputerPlayer("COM");
+        //players.add(com);
         
-        // 6. Generate a random card
+        // Ask the user how many opponents they would like
+        System.out.print("Enter the number of opponents you would like to play against: ");
+        int numberOfOpponents = input.nextInt();
+
+        // Create the opponents
+        createComputerPlayers(numberOfOpponents, players);
+        
+        // Generate a random card
         Random random = new Random();
         
         Value randomValue = Value.values()[random.nextInt(Value.values().length)];
@@ -111,13 +129,13 @@ public final class CrazyEights extends Game
         
         CrazyEightsCard startingCard = new CrazyEightsCard(randomSuit, randomValue);
         
-        // 7. Instantiate the stock pile and fill it with all but the random card
+        // Instantiate the stock pile and fill it with all but the random card
         StockPile stockPile = new StockPile(startingCard);
         
-        // 8. Create the discard pile and give one card to it
+        // Create the discard pile and give one card to it
         DiscardPile discardPile = new DiscardPile(startingCard);
         
-        // 9. Deal the cards
+        // Deal the cards
         
         // To the player
         for (int i = 1; i <= NUMBER_OF_STARTING_CARDS; i++)
@@ -125,20 +143,23 @@ public final class CrazyEights extends Game
             CrazyEightsCard card = stockPile.pickUp();
             humanPlayer.addToHand(card);
         }
-        
+  
+/*      
         // To the opponent
         for (int i = 1; i <= NUMBER_OF_STARTING_CARDS; i++)
         {
             CrazyEightsCard card = stockPile.pickUp();
             com.addToHand(card);
         }
-        
-        // 10. Start the main game loop
+*/
+ 
+/*       
+        // Start the main game loop
         //boolean noWinner = true;
         //playing 10 rounds of player vs com
         for(int i = 0; i < 10; i++)
         {
-            Player winner = checkForWinner(tempPlayers);
+            Player winner = checkForWinner(players);
             if (winner != null)
             {
                 System.out.println(winner.getName() + " has won the game!");
@@ -149,6 +170,7 @@ public final class CrazyEights extends Game
             // End the game loop for testing
             //noWinner = false;
         }
+*/
     }
     
     /**
