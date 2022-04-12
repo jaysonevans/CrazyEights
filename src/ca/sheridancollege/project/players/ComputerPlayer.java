@@ -3,8 +3,6 @@ package ca.sheridancollege.project.players;
 import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
-import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * This class represents an AI player.
@@ -36,48 +34,39 @@ public final class ComputerPlayer extends Player
     @Override
     public void play(DiscardPile discardPile, StockPile stockPile)
     {
-        System.out.println("The top card is " + discardPile.getTopCard());
+        System.out.println("\nThe top card is " + discardPile.getTopCard() + "\n");
         
         boolean entering = true;
         
+        int cardNumber = 0;
+        int cardsPlacedThisTurn = 0;
         
-        
-        if (discardPile.hasMatch(hand))
+        printHand();
+           
+        if (cardsPlacedThisTurn == 0 && discardPile.hasMatch(hand))
         {
-
             do
             {
-                int cardNumber = cardPicker(discardPile);
+                cardNumber = cardMatchSelector(discardPile);
+                
                 if (isInRange(cardNumber))
                 {
-                
                     discardPile.add(hand.get(cardNumber),getName());
                     
                     if (discardPile.isAddSuccessful())
                     {
                         CrazyEightsCard card = hand.get(cardNumber);
                         cardsPlaced++;
+                        cardsPlacedThisTurn++;
                         removeFromHand(cardNumber);
                         
                         System.out.println( getName() + " used " + card + "!");
 
-                        if (discardPile.hasValueMatch(hand)) 
-                        {
-                            // checking for another card to play computer always anwsers yes  
-                            String answer = "y";
-
-                            if (!answer.equalsIgnoreCase("y")) 
-                            {
-                                entering = false;
-                            }
-                        } 
-                        
-                        else 
+                        if (!discardPile.hasValueMatch(hand))
                         {
                             entering = false;
                         }
                     }
-                    
                     else
                     {
                         System.out.println("Please try again.");
@@ -87,7 +76,41 @@ public final class ComputerPlayer extends Player
                 {
                     System.out.println("Must enter the correct number corresponding to a card in your hand");
                 } 
+            } while (entering);
+        }
+        else if (discardPile.hasValueMatch(hand))
+        {
+            do
+            {
+                cardNumber = cardValueMatchSelector(discardPile);
                 
+                if (isInRange(cardNumber))
+                {
+                    discardPile.add(hand.get(cardNumber),getName());
+                    
+                    if (discardPile.isAddSuccessful())
+                    {
+                        CrazyEightsCard card = hand.get(cardNumber);
+                        cardsPlaced++;
+                        cardsPlacedThisTurn++;
+                        removeFromHand(cardNumber);
+                        
+                        System.out.println(getName() + " used " + card + "!");
+
+                        if (!discardPile.hasValueMatch(hand))
+                        {
+                            entering = false;
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Please try again.");
+                    }
+                }
+                else
+                {
+                    System.out.println("Must enter the correct number corresponding to a card in your hand");
+                } 
             } while (entering);
         }
         else
@@ -105,18 +128,38 @@ public final class ComputerPlayer extends Player
         }
     }
     
-    public int cardPicker(DiscardPile discardPile)
+    /**
+     * @param discardPile
+     * @return the index of the last matching card in the hand
+     */
+    public int cardMatchSelector(DiscardPile discardPile)
     {
-        int cardPick = 0;
+        int cardPick = -1;
         for(int i = 0; i < hand.size(); i++)
         {
-             
-            discardPile.hasMatch(hand);
             if(discardPile.topCardMatches(hand.get(i)))
             {
                cardPick = i;
             }
         }
+        return cardPick;
+    }
+    
+    /**
+     * @param discardPile
+     * @return the index of the last matching card in the hand
+     */
+    public int cardValueMatchSelector(DiscardPile discardPile)
+    {
+        int cardPick = -1;
+        for (int i = 0; i < hand.size(); i++)
+        {
+            if (discardPile.topCardValueMatches(hand.get(i)))
+            {
+                cardPick = i;
+            }
+        }
+        
         return cardPick;
     }
 }

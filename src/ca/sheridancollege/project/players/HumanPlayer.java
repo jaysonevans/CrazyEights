@@ -45,12 +45,11 @@ public final class HumanPlayer extends Player
         
         if (discardPile.hasMatch(hand))
         {
-
             do
             {
                 do
                 {
-                    printHand();
+                    printUserDialog();
                 
                     System.out.print("Enter a card: ");
         
@@ -108,7 +107,6 @@ public final class HumanPlayer extends Player
                 
                 if (isInRange(cardNumber))
                 {
-                
                     discardPile.add(hand.get(cardNumber));
                     
                     if (discardPile.isAddSuccessful())
@@ -130,13 +128,11 @@ public final class HumanPlayer extends Player
                                 entering = false;
                             }
                         } 
-                        
                         else 
                         {
                             entering = false;
                         }
                     }
-                    
                     else
                     {
                         System.out.println("Please try again.");
@@ -146,10 +142,8 @@ public final class HumanPlayer extends Player
                 {
                     System.out.println("Must enter the correct number corresponding to a card in your hand");
                 } 
-                
             } while (entering);
         }
-        
         else
         {
             System.out.println(getName() + " has no moves.");

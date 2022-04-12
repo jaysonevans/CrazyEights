@@ -157,7 +157,22 @@ public final class DiscardPile extends GroupOfCards
     {
         CrazyEightsCard topCard = getTopCard();
         
-        return ( card.getSuit() == topCard.getSuit() || card.getValue() == topCard.getValue());
+        return (card.getSuit() == topCard.getSuit() || card.getValue() == topCard.getValue());
+    }
+    
+    /**
+     * Looks for a match in the value of the card. To be
+     * Used with the AI for selection purposes after their
+     * initial card has been placed.
+     * 
+     * @param card
+     * @return 
+     */
+    public boolean topCardValueMatches(CrazyEightsCard card)
+    {
+        CrazyEightsCard topCard = getTopCard();
+        
+        return card.getValue() == topCard.getValue();
     }
     
     /**
@@ -333,17 +348,18 @@ public final class DiscardPile extends GroupOfCards
      */
     public boolean hasValueMatch(ArrayList<CrazyEightsCard> hand)
     {
+        boolean hasValueMatch = false;
+        
         CrazyEightsCard topCard = getTopCard();
         
         for (CrazyEightsCard card: hand)
         {
             if (card.getValue().ordinal() == topCard.getValue().ordinal())
             {
-                System.out.println(card);
-                return true;
+                hasValueMatch = true;
             }
         }
         
-        return false;
+        return hasValueMatch;
     }
 }

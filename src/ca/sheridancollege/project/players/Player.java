@@ -93,6 +93,15 @@ public abstract class Player implements Cloneable
     }
     
     /**
+     * The dialog displayed to the user when it's their turn
+     */
+    public void printUserDialog()
+    {
+        printHand();
+        System.out.println("Or enter q to quit");
+    }
+    
+    /**
      * @param index of the card in the hand to remove
      */
     public void removeFromHand(int index)
