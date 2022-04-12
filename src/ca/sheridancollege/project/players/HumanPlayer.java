@@ -165,40 +165,4 @@ public final class HumanPlayer extends Player
         }
         
     }
-    
-    /**
-     * @param card to be added to the hand
-     */
-    public void addToHand(CrazyEightsCard card)
-    {
-        hand.add(card);
-    }
-    
-    public void removeFromHand(int index)
-    {
-        hand.remove(index);
-    }
-    
-    /**
-     * Display the hand of this player
-     */
-    public void printHand()
-    {
-        System.out.println("Your hand is:");
-        Collections.sort(hand);
-        for (int i = 0; i < hand.size(); i++)
-        {
-            System.out.printf("%d: %-6sof %s\n", i, hand.get(i).getValue(), hand.get(i).getSuit());
-        }
-    }
-    
-    /**
-     * @param cardNumber the index number of the card in hand
-     * @return true if the card number is within the limits of the hand
-     */
-    public boolean isInRange(int cardNumber)
-    {
-        return 0 <= cardNumber && cardNumber < hand.size();
-    }
-   
 }

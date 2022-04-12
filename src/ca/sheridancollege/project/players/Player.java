@@ -9,6 +9,7 @@ import ca.sheridancollege.project.cards.CrazyEightsCard;
 import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A class that models each Player in the game. Players have an identifier, which should be unique.
@@ -65,12 +66,38 @@ public abstract class Player implements Cloneable
     /**
      * The method to be overridden when you subclass the Player class with your specific type of Player and filled in
      * with logic to play your game.
+     * @param discardPile
+     * @param stockPile
      */
     public abstract void play(DiscardPile discardPile, StockPile stockPile);
     
-      public void addToHand(CrazyEightsCard card)
+    /**
+     * @param card to be added to the player's hand
+     */
+    public void addToHand(CrazyEightsCard card)
     {
         hand.add(card);
+    }
+    
+    /**
+     * Display the hand of this player
+     */
+    public void printHand()
+    {
+        System.out.println("Your hand is:");
+        Collections.sort(hand);
+        for (int i = 0; i < hand.size(); i++)
+        {
+            System.out.printf("%d: %-6sof %s\n", i, hand.get(i).getValue(), hand.get(i).getSuit());
+        }
+    }
+    
+    /**
+     * @param index of the card in the hand to remove
+     */
+    public void removeFromHand(int index)
+    {
+        hand.remove(index);
     }
 
     /**
@@ -80,5 +107,15 @@ public abstract class Player implements Cloneable
     {
         return hand.size();
     }
+        
+    /**
+     * @param cardNumber the index number of the card in hand
+     * @return true if the card number is within the limits of the hand
+     */
+    public boolean isInRange(int cardNumber)
+    {
+        return 0 <= cardNumber && cardNumber < hand.size();
+    }
+    
 
 }

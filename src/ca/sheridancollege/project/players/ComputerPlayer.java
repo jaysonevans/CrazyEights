@@ -105,37 +105,6 @@ public final class ComputerPlayer extends Player
         }
     }
     
-    /**
-     * @param card to be added to the hand
-     */
-    public void addToHand(CrazyEightsCard card)
-    {
-        hand.add(card);
-    }
-    
-    /**
-     * Display the hand of this player
-     */
-    public void printHand()
-    {
-        System.out.println(super.getName() + "'s hand contains:");
-        Collections.sort(hand);
-        for (CrazyEightsCard card: hand)
-        {
-            System.out.printf("%-6sof %s\n", card.getValue(), card.getSuit());
-        }
-    }
-    
-    public boolean isInRange(int cardNumber)
-    {
-        return 0 <= cardNumber && cardNumber < hand.size();
-    }
-    
-     public void removeFromHand(int index)
-    {
-        hand.remove(index);
-    }
-    
     public int cardPicker(DiscardPile discardPile)
     {
         int cardPick = 0;

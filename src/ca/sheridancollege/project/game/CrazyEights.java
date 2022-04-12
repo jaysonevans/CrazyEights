@@ -45,15 +45,14 @@ public final class CrazyEights extends Game
     public void displayRules()
     {
         System.out.println("Here are the rules: ");
-        System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s",
+        System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n",
                 "1. Get rid of the cards in your hand.",
                 "2. You can place any card with a matching suit or value.",
                 "3. Eight cards change the suit of the top card.",
                 "4. You can play down multiple cards of the same value on the same turn.",
                 "5. Queen of Spades on top of the discard pile makes the next player pick up 5 cards.",
                 "6. Two makes the next player pick up two.",
-                "7. Twos stack",
-                "8. Enter a Q  to terminate the game\n");
+                "7. Twos stack");
     }
     
     @Override
@@ -72,13 +71,18 @@ public final class CrazyEights extends Game
     }
 
     /**
-     *  @param 
+     *  @param numberOfOpponents the number of computer AI to be created
+     *  @param players the list of players
      */
     public void createComputerPlayers(int numberOfOpponents, ArrayList<Player> players)
     {
         for (int i = 1; i <= numberOfOpponents; i++)
         {
             players.add(new ComputerPlayer("COM" + i));
+        }
+        for (Player player: players)
+        {
+            System.out.println(player);
         }
     }
     
