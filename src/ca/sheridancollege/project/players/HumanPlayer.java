@@ -76,7 +76,7 @@ public final class HumanPlayer extends Player
                         }
                         else
                         {
-                        System.out.println("Please enter a card number or a Q to quit the game");
+                            System.out.println("Please enter a card number or a Q to quit the game");
                         }
                   
                     }
@@ -84,27 +84,27 @@ public final class HumanPlayer extends Player
                     {
                         try
                         {
-                        cardNumber = Integer.parseInt(userNumInput);
+                            cardNumber = Integer.parseInt(userNumInput);
                          
-                        if((isInRange(cardNumber)))
-                        {
-                            quitCheck = false;
-                        }
+                            if ((isInRange(cardNumber)))
+                            {
+                                quitCheck = false;
+                            }
                         
-                        else
-                        {
-                            System.out.println("\"Must enter the correct number corresponding to a card in your hand\"");
+                            else
+                            {
+                                System.out.println("\"Must enter the correct number corresponding to a card in your hand\"");
                            
+                            }
                         }
-                        }
-                        catch(NumberFormatException nef)
+                        catch (NumberFormatException nef)
                         {
                             System.out.println("Error: Must enter the correct number corresponding to a card in your hand");
                             
                         }
                         
                      }
-                }while(quitCheck);
+                } while(quitCheck);
                 
                 if (isInRange(cardNumber))
                 {

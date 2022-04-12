@@ -117,5 +117,18 @@ public abstract class Player implements Cloneable
         return 0 <= cardNumber && cardNumber < hand.size();
     }
     
+    @Override
+    public String toString()
+    {
+        String output = getName() + ":\n";
+        
+        for (CrazyEightsCard card: hand)
+        {
+            output += card.getValue() + " of " + card.getSuit() + "\n";
+        }
+        
+        return output;
+    }
+    
 
 }

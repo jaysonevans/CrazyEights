@@ -11,6 +11,7 @@ import ca.sheridancollege.project.players.HumanPlayer;
 import ca.sheridancollege.project.players.Player;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 import java.util.Random;
 
 /**
@@ -55,6 +56,7 @@ public final class CrazyEights extends Game
                 "7. Twos stack");
     }
     
+    /*
     @Override
     public Player checkForWinner(ArrayList<Player> players)
     {
@@ -69,6 +71,38 @@ public final class CrazyEights extends Game
 
         return null;
     }
+    */
+    
+    /**
+     * @param player
+     * @return true if the size of the player's hand is 0
+     */
+    @Override
+    public boolean checkForWinner(Player player)
+    {
+        return player.getHandSize() <= 0;
+    }
+    
+    /**
+     * @param player
+     * @param players 
+     * Prints a message of congratulation or consolation whether the user
+     * won or lost.
+     */
+    public void declareWinner(Player player, ArrayList<Player> players)
+    {
+        if (players.get(0) == player)
+        {
+            System.out.println("Congratulations " + player.getName() + "!");
+            System.out.println("You just won the game!");
+        }
+        else
+        {
+            System.out.println(player.getName() + " wins!");
+            System.out.println("Sorry 'bout the loss; try again next time");
+        }
+
+    }
 
     /**
      *  @param numberOfOpponents the number of computer AI to be created
@@ -80,6 +114,31 @@ public final class CrazyEights extends Game
         {
             players.add(new ComputerPlayer("COM" + i));
         }
+    }
+    
+    /**
+     * @param players
+     * @param stockPile 
+     * Deal a hand to the players at the start of the game
+     */
+    public void deal(ArrayList<Player> players, StockPile stockPile)
+    {
+        for (Player player: players)
+        {
+            for (int i = 1; i <= NUMBER_OF_STARTING_CARDS; i++)
+            {
+                CrazyEightsCard card = stockPile.pickUp();
+                player.addToHand(card);
+            }
+        }
+    }
+    
+    /**
+     * @param players 
+     * For diagnostic purposes only
+     */
+    public void printPlayers(ArrayList<Player> players)
+    {
         for (Player player: players)
         {
             System.out.println(player);
@@ -114,14 +173,26 @@ public final class CrazyEights extends Game
         System.out.println("\nGreetings, " + humanPlayer.getName() + ".\nWelcome to " + getName() + ".");
         displayRules();
         
-        // Create the opponent
-        //ComputerPlayer com = new ComputerPlayer("COM");
-        //players.add(com);
-        
         // Ask the user how many opponents they would like
-        System.out.print("Enter the number of opponents you would like to play against: ");
-        int numberOfOpponents = input.nextInt();
-
+        int numberOfOpponents = 1;
+        try 
+        {
+            System.out.print("Enter the number of opponents you would like to play against between 1 and 4: ");
+            numberOfOpponents = input.nextInt();
+        }
+        catch (InputMismatchException ex)
+        {
+            System.out.println("That's not an integer!");
+            System.out.println("Default of 1 is used.");
+        }
+        
+        if (numberOfOpponents < 1 || numberOfOpponents > 4)
+        {
+            System.out.println("Number out of range.");
+            System.out.println("Default of one is used.");
+            numberOfOpponents = 1;
+        }
+        
         // Create the opponents
         createComputerPlayers(numberOfOpponents, players);
         
@@ -140,23 +211,25 @@ public final class CrazyEights extends Game
         DiscardPile discardPile = new DiscardPile(startingCard);
         
         // Deal the cards
-        
-        // To the player
-        for (int i = 1; i <= NUMBER_OF_STARTING_CARDS; i++)
-        {
-            CrazyEightsCard card = stockPile.pickUp();
-            humanPlayer.addToHand(card);
-        }
-  
-/*      
-        // To the opponent
-        for (int i = 1; i <= NUMBER_OF_STARTING_CARDS; i++)
-        {
-            CrazyEightsCard card = stockPile.pickUp();
-            com.addToHand(card);
-        }
-*/
+        deal(players, stockPile);
  
+        // Main game loop
+        boolean winner = false;
+        while(!winner)
+        {
+            for (Player player: players)
+            {
+                player.play(discardPile, stockPile);
+                System.out.println();
+                
+                if (checkForWinner(player))
+                {
+                    declareWinner(player, players);
+                    winner = true;
+                    break;
+                }
+            }
+        }
 /*       
         // Start the main game loop
         //boolean noWinner = true;

@@ -93,6 +93,7 @@ public final class DiscardPile extends GroupOfCards
             }
         }
     }
+    
     // used for the computer opponent to hand eight cards 
     public void add(CrazyEightsCard card, String name)
     {
@@ -263,7 +264,7 @@ public final class DiscardPile extends GroupOfCards
                     break;
             }
         }
-        System.out.println(name + " Changed the suit to " + card.getSuit());
+        System.out.println(name + " Changed the suit to " + card.getSuit() + "\n");
         cards.add(card); // Add the modified card to the pile
     }
     
