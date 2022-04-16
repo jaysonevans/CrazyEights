@@ -233,23 +233,6 @@ public final class CrazyEights extends Game
         // Main game loop
         boolean winner = false;
          
-            Value two = Value.values()[1];
-            Value queen = Value.values()[11];
-            Suit heartsSuit   = Suit.values()[0];
-            Suit clubsSuit    = Suit.values()[1];
-            Suit spadesSuit   = Suit.values()[2];
-            Suit diamondsSuit = Suit.values()[3];
-            CrazyEightsCard twoHearts   = new CrazyEightsCard(heartsSuit, two);
-           CrazyEightsCard twoClubs    = new CrazyEightsCard(clubsSuit, two);
-           CrazyEightsCard twoSpades   = new CrazyEightsCard(spadesSuit, two);
-           CrazyEightsCard twoDiamonds = new CrazyEightsCard(diamondsSuit, two);
-           CrazyEightsCard queenSpades = new CrazyEightsCard(spadesSuit, queen);
-            
-                     humanPlayer.addToHand(twoClubs);
-                     humanPlayer.addToHand(twoHearts);
-                     humanPlayer.addToHand(twoSpades );
-                     humanPlayer.addToHand(twoDiamonds);
-                     humanPlayer.addToHand(queenSpades);
         while(!winner)
         {
 
@@ -261,7 +244,7 @@ public final class CrazyEights extends Game
                 player.play(discardPile,stockPile);
                 discardPile.addTwo(player, stockPile, discardPile,getPlayerToLeft(players,count));
                 System.out.println(player.getName());
-                player.printHand();
+                
                
                 
                 System.out.println();
