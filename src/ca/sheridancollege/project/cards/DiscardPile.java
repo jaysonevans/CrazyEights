@@ -315,7 +315,7 @@ public final class DiscardPile extends GroupOfCards
         System.out.println(name + " Changed the suit to " + card.getSuit() + "\n");
         cards.add(card); // Add the modified card to the pile
     }
-    public void addTwo(Player player,StockPile stockPile, DiscardPile discardPile, Player opponent)
+    public void addingCards(Player player,StockPile stockPile, DiscardPile discardPile, Player opponent)
     {
         
         

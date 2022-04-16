@@ -242,7 +242,7 @@ public final class CrazyEights extends Game
 
                 count++;
                 player.play(discardPile,stockPile);
-                discardPile.addTwo(player, stockPile, discardPile,getPlayerToLeft(players,count));
+                discardPile.addingCards(player, stockPile, discardPile,getPlayerToLeft(players,count));
                 System.out.println(player.getName());
                 
                
