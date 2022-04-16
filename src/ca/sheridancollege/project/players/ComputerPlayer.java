@@ -40,6 +40,7 @@ public final class ComputerPlayer extends Player
         
         int cardNumber = 0;
         int cardsPlacedThisTurn = 0;
+        cardsPlaced = 0;
         
         printHand();
            

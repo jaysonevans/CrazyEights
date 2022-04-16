@@ -27,6 +27,7 @@ public final class CrazyEights extends Game
     public static final String NAME = "Crazy Eights";
     public static final int NUMBER_OF_STARTING_CARDS = 8;
     
+    
     /**
      * Constructor isn't supposed to be used as
      * a typical object, more as a controller/coordinator
@@ -112,9 +113,10 @@ public final class CrazyEights extends Game
     {
         for (int i = 1; i <= numberOfOpponents; i++)
         {
-            players.add(new ComputerPlayer("COM" + i));
+            players.add(new ComputerPlayer("COM " + i));
         }
     }
+   
     
     /**
      * @param players
@@ -144,7 +146,22 @@ public final class CrazyEights extends Game
             System.out.println(player);
         }
     }
-    
+    public Player getPlayerToLeft(ArrayList<Player> players, int count)
+    {
+        if(count > players.size() -1)
+        {
+            
+            
+            return players.get(0);
+            
+        }
+        else
+        {
+            
+            return players.get(count);
+            
+        }
+    }
     /**
      * Does the heavy lifting in coordinating 
      * objects can method calls.
@@ -177,7 +194,7 @@ public final class CrazyEights extends Game
         int numberOfOpponents = 1;
         try 
         {
-            System.out.print("Enter the number of opponents you would like to play against between 1 and 4: ");
+            System.out.print("Enter the number of opponents you would like to play against between 1 and 3: ");
             numberOfOpponents = input.nextInt();
         }
         catch (InputMismatchException ex)
@@ -186,7 +203,7 @@ public final class CrazyEights extends Game
             System.out.println("Default of 1 is used.");
         }
         
-        if (numberOfOpponents < 1 || numberOfOpponents > 4)
+        if (numberOfOpponents < 1 || numberOfOpponents > 3)
         {
             System.out.println("Number out of range.");
             System.out.println("Default of one is used.");
@@ -195,7 +212,7 @@ public final class CrazyEights extends Game
         
         // Create the opponents
         createComputerPlayers(numberOfOpponents, players);
-        
+          
         // Generate a random card
         Random random = new Random();
         
@@ -215,11 +232,38 @@ public final class CrazyEights extends Game
  
         // Main game loop
         boolean winner = false;
+         
+            Value two = Value.values()[1];
+            Value queen = Value.values()[11];
+            Suit heartsSuit   = Suit.values()[0];
+            Suit clubsSuit    = Suit.values()[1];
+            Suit spadesSuit   = Suit.values()[2];
+            Suit diamondsSuit = Suit.values()[3];
+            CrazyEightsCard twoHearts   = new CrazyEightsCard(heartsSuit, two);
+           CrazyEightsCard twoClubs    = new CrazyEightsCard(clubsSuit, two);
+           CrazyEightsCard twoSpades   = new CrazyEightsCard(spadesSuit, two);
+           CrazyEightsCard twoDiamonds = new CrazyEightsCard(diamondsSuit, two);
+           CrazyEightsCard queenSpades = new CrazyEightsCard(spadesSuit, queen);
+            
+                     humanPlayer.addToHand(twoClubs);
+                     humanPlayer.addToHand(twoHearts);
+                     humanPlayer.addToHand(twoSpades );
+                     humanPlayer.addToHand(twoDiamonds);
+                     humanPlayer.addToHand(queenSpades);
         while(!winner)
         {
+
+           int count = 0;
             for (Player player: players)
             {
-                player.play(discardPile, stockPile);
+
+                count++;
+                player.play(discardPile,stockPile);
+                discardPile.addTwo(player, stockPile, discardPile,getPlayerToLeft(players,count));
+                System.out.println(player.getName());
+                player.printHand();
+               
+                
                 System.out.println();
                 
                 if (checkForWinner(player))
@@ -230,7 +274,8 @@ public final class CrazyEights extends Game
                 }
             }
         }
-/*       
+        /*       
+        
         // Start the main game loop
         //boolean noWinner = true;
         //playing 10 rounds of player vs com
@@ -261,5 +306,10 @@ public final class CrazyEights extends Game
     public static void main(String[] args)
     {
         new CrazyEights().play();
+        
+    // check two count platers array 
+    // if two add to player at counts hand number of cards 
+        
+    
     }
 }

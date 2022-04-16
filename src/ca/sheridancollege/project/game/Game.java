@@ -86,39 +86,6 @@ public abstract class Game implements Cloneable
      */
     //public abstract Player checkForWinner(ArrayList<Player> players);
     public abstract boolean checkForWinner(Player player);
-    
-    public int checkAdditionCards (HumanPlayer player, DiscardPile discardPile, StockPile stockPile)
-    {
-        int CardPickUps = 0;
-        
-        //creating 2 cards to check aganist 
-        CrazyEightsCard twoHearts   = new CrazyEightsCard(Suit.values()[0], Value.values()[1]);
-        
-        //creating queen of spades to check aganist 
-        CrazyEightsCard queenSpades = new CrazyEightsCard(Suit.values()[2], Value.values()[11]);
-        
-        for(int i = 0; i <= player.cardsPlaced; i++)
-        {
-            
-            if(discardPile.getCards().get(i).getValue().equals(twoHearts.getValue()))
-           {
-            CardPickUps += 2;
-           }
-           else if (discardPile.getCards().get(i).getValue().equals(queenSpades.getValue()) 
-             && discardPile.getCards().get(i).getSuit().equals(queenSpades.getSuit()))
-           {
-            CardPickUps += 5;
-            }
-        }
-        return CardPickUps;
-    }
-    
-    public void pickUpCards(int CardPickUps, Player player, StockPile stockPile)
-    {
-        for(int i = 0; i < CardPickUps; i++)
-        {
-            player.addToHand(stockPile.pickUp());
-        }
-    }
+   
 
 }//end class

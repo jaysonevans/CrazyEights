@@ -1,6 +1,7 @@
 package ca.sheridancollege.project.cards;
 
 
+import ca.sheridancollege.project.players.Player;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
@@ -184,6 +185,38 @@ public final class DiscardPile extends GroupOfCards
         return card.getValue() == Value.EIGHT;
     }
     
+    public boolean cardIsTwo(CrazyEightsCard card)
+    {
+        return card.getValue() == Value.TWO;
+    }
+   
+    public boolean CardIsQueenOfSpades(CrazyEightsCard card)
+    {
+        return card.getValue() == Value.QUEEN && card.getSuit() == Suit.SPADES;
+    }
+    
+    public int searchDiscardPile(ArrayList<CrazyEightsCard> cards, int cardsPlaced)
+    {
+       int pickUpAmount = 0;
+       int pileSize = cards.size() - cardsPlaced ; // start the search at the spot where the players last placed card is 
+       for(int i = 0; i < cardsPlaced; i++)
+       {
+
+           if(cardIsTwo(cards.get(pileSize)))
+           {
+              
+               pickUpAmount += 2;
+           }
+           else if (CardIsQueenOfSpades(cards.get(pileSize)))
+           {
+               pickUpAmount += 5;
+           }
+           pileSize++;
+           
+       }
+        return pickUpAmount;
+    }
+    
     /**
      * Asks the user what they'd like to change
      * the suit of the top card to and then 
@@ -282,7 +315,14 @@ public final class DiscardPile extends GroupOfCards
         System.out.println(name + " Changed the suit to " + card.getSuit() + "\n");
         cards.add(card); // Add the modified card to the pile
     }
-    
+    public void addTwo(Player player,StockPile stockPile, DiscardPile discardPile, Player opponent)
+    {
+        
+        
+        int pickUpAmount = discardPile.searchDiscardPile(discardPile.getCards(),player.getCardsPlaced());
+        stockPile.giveCards(stockPile.getCards(), opponent, pickUpAmount, stockPile);
+      
+    }
     /**
      * Text prompt for the user to enter a suit number
      * when placing an eight.

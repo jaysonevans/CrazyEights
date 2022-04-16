@@ -1,6 +1,8 @@
 package ca.sheridancollege.project.cards;
 
 
+import ca.sheridancollege.project.players.Player;
+import java.util.ArrayList;
 import java.util.Collections;
 
 /**
@@ -114,6 +116,16 @@ public final class StockPile extends GroupOfCards
         for (CrazyEightsCard card: cards)
         {
             System.out.printf("%-6sof %s\n", card.getValue(), card.getSuit());
+        }
+    }
+    
+    public void giveCards(ArrayList<CrazyEightsCard> cards, Player opponent, int cardPickUp, StockPile stockPile)
+    {
+        for(int i = 0; i <= cardPickUp; i++)
+        {
+           opponent.addToHand(stockPile.pickUp());
+            
+           
         }
     }
 }

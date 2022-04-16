@@ -53,6 +53,18 @@ public abstract class Player implements Cloneable
     {
         this.name = name;
     }
+
+    public int getCardsPlaced() 
+    {
+        return cardsPlaced;
+    }
+
+    public void setCardsPlaced(int cardsPlaced) 
+    {
+        this.cardsPlaced = cardsPlaced;
+    }
+    
+    
     
     /**
      * @return a copy of the player object

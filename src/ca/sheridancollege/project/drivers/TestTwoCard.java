@@ -11,6 +11,8 @@ import ca.sheridancollege.project.cards.StockPile;
 import ca.sheridancollege.project.players.ComputerPlayer;
 import java.util.Random;
 import ca.sheridancollege.project.players.HumanPlayer;
+import ca.sheridancollege.project.players.Player;
+import java.util.ArrayList;
 
 
 /**
@@ -30,10 +32,11 @@ public class TestTwoCard
         Value randomValue = Value.values()[random.nextInt(Value.values().length)];
         Suit randomSuit = Suit.values()[random.nextInt(Suit.values().length)];
         
+        CrazyEights eight = new CrazyEights();
        
         // making a test 2 card and queen of spades 
+         Value queen = Value.values()[11];
         Value two = Value.values()[1];
-        Value queen = Value.values()[11];
         Suit heartsSuit   = Suit.values()[0];
         Suit clubsSuit    = Suit.values()[1];
         Suit spadesSuit   = Suit.values()[2];
@@ -54,6 +57,15 @@ public class TestTwoCard
         // test computer
         ComputerPlayer com = new ComputerPlayer("COM");
         
+       
+        ArrayList<Player> players = new ArrayList<>();
+        eight.createComputerPlayers(2, players);
+       
+     
+        
+    
+   
+         
         CrazyEightsCard startingCard = new CrazyEightsCard(spadesSuit, randomValue);
         
         // 7. Instantiate the stock pile and fill it with all but the random card
@@ -77,8 +89,8 @@ public class TestTwoCard
             CrazyEightsCard card = stockPile.pickUp();
             com.addToHand(card);
         }
-        com.printHand();
-        humanPlayer.printHand();
+       
+        
         
         // giving human player 2 cards and queen
         humanPlayer.addToHand(twoClubs);
@@ -87,21 +99,18 @@ public class TestTwoCard
         humanPlayer.addToHand(twoDiamonds);
         humanPlayer.addToHand(queenSpades);
         
+        com.addToHand(twoClubs);
+        com.addToHand(twoHearts);
+        com.addToHand(twoSpades );
+        com.addToHand(twoDiamonds);
+        com.addToHand(queenSpades);
         System.out.println();
-        discardPile.printPile();
-        
-        humanPlayer.play(discardPile, stockPile);
-        
-        
        
-        // checks the number of cards the players played then check if there was any 2s or queens
-        int cardPickUps = new CrazyEights().checkAdditionCards(humanPlayer, discardPile, stockPile);
-        //if there is any cards to be picked up this makes the player or computer pick them up 
-        new CrazyEights().pickUpCards(cardPickUps, com, stockPile);
-        System.out.println(cardPickUps);
-        System.out.println();
-        com.printHand();
-        discardPile.printPile();
+        
+        //humanPlayer.play(discardPile, stockPile);
+        
+        
+  
       
     }
 }

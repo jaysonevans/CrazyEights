@@ -40,6 +40,7 @@ public final class HumanPlayer extends Player
         boolean quitCheck = true;
         boolean entering = true;
         int cardNumber = 0;
+        cardsPlaced = 0;
         
         System.out.println("\nThe top card is " + discardPile.getTopCard() +"\n");
         
