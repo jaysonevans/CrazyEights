@@ -1,6 +1,7 @@
 package ca.sheridancollege.project.cards;
 
 
+import ca.sheridancollege.project.game.CrazyEightsUI;
 import ca.sheridancollege.project.players.Player;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -16,9 +17,9 @@ import java.util.Random;
 public final class DiscardPile extends GroupOfCards
 {
 
-    private transient Scanner input = new Scanner(System.in);
     private boolean addSuccessful = false; // Used for when prompting for another card
     public static DiscardPile instance = null;
+    private CrazyEightsUI view = new CrazyEightsUI(); // TODO singleton
     
     /**
      * Constructs a discard pile with a size equal to 
@@ -152,7 +153,7 @@ public final class DiscardPile extends GroupOfCards
         String output = "Error: " + card.toString() + " does not match " +
                 getTopCard().toString() + "'s suit or value.\nNo card was added.";
         
-        System.out.println(output);
+        view.display(output);
     }
     
     /**
@@ -250,9 +251,7 @@ public final class DiscardPile extends GroupOfCards
         while (go)
         {
             
-            promptForSuit();
-            
-            int newSuit = input.nextInt(); // Get the inputted suit number
+            int newSuit = view.promptForSuit();; // Get the inputted suit number
             
             // Find the corresponding suit
             // If no suit matches, report an error
@@ -275,7 +274,7 @@ public final class DiscardPile extends GroupOfCards
                     go = false;
                     break;
                 default:
-                    System.out.println("Error: must enter the correct number of the corresponding suit");
+                    view.display("Error: must enter the correct number of the corresponding suit");
                     break;
             }
         }
@@ -290,7 +289,7 @@ public final class DiscardPile extends GroupOfCards
         // Get the suit from the user and validate it
         while (go)
         {
-            promptForSuit();
+            view.promptForSuit();
             Random random = new Random();
             int newSuit = random.nextInt(NUMBER_OF_SUITS - 1);
             
@@ -316,11 +315,11 @@ public final class DiscardPile extends GroupOfCards
                     go = false;
                     break;
                 default:
-                    System.out.println("Error: must enter the correct number of the corresponding suit");
+                    view.display("Error: must enter the correct number of the corresponding suit");
                     break;
             }
         }
-        System.out.println(name + " Changed the suit to " + card.getSuit() + "\n");
+        view.display(name + " Changed the suit to " + card.getSuit() + "\n");
         cards.add(card); // Add the modified card to the pile
     }
     public void addingCards(Player player,StockPile stockPile, DiscardPile discardPile, Player opponent)
@@ -331,30 +330,17 @@ public final class DiscardPile extends GroupOfCards
         stockPile.giveCards(stockPile.getCards(), opponent, pickUpAmount, stockPile);
       
     }
-    /**
-     * Text prompt for the user to enter a suit number
-     * when placing an eight.
-     */
-    public void promptForSuit()
-    {
-            System.out.println("What would you like the top suit to be:");
         
-            for (Suit suit: Suit.values())
-            {
-                System.out.printf("%d:%s\n", suit.ordinal(), suit.name());
-            }
-    }
-    
     /**
      * Print the cards in the pile.
      * Mainly for testing.
      */
     public void printPile()
     {
-        System.out.println("The discard pile contains:");
+        view.display("The discard pile contains:");
         for (CrazyEightsCard card: cards)
         {
-            System.out.printf("%-6sof %s\n", card.getValue(), card.getSuit());
+            view.printCard(card);
         }
     }
     

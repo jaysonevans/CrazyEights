@@ -23,12 +23,14 @@ import java.util.Random;
  *
  * @author Jayson Evans
  * @author Justin Beaulne
+ * @author Ryan Stewart
  */
 public final class CrazyEights extends Game
 {
 
     public static final String NAME = "Crazy Eights";
     public static final int NUMBER_OF_STARTING_CARDS = 8;
+    private CrazyEightsUI view = new CrazyEightsUI(); // create the view
 
     /**
      * Constructor isn't supposed to be used as a typical object, more as a
@@ -40,22 +42,6 @@ public final class CrazyEights extends Game
     public CrazyEights()
     {
         super(NAME);
-    }
-
-    /**
-     * Display the rules of the game
-     */
-    public void displayRules()
-    {
-        System.out.println("Here are the rules: ");
-        System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n",
-                "1. Get rid of the cards in your hand.",
-                "2. You can place any card with a matching suit or value.",
-                "3. Eight cards change the suit of the top card.",
-                "4. You can play down multiple cards of the same value on the same turn.",
-                "5. Queen of Spades on top of the discard pile makes the next player pick up 5 cards.",
-                "6. Two makes the next player pick up two.",
-                "7. Twos stack");
     }
 
     /**
@@ -77,12 +63,10 @@ public final class CrazyEights extends Game
     {
         if (players.get(0) == player)
         {
-            System.out.println("Congratulations " + player.getName() + "!");
-            System.out.println("You just won the game!");
+            view.displayPlayerWin(player.getName());
         } else
         {
-            System.out.println(player.getName() + " wins!");
-            System.out.println("Sorry 'bout the loss; try again next time");
+            view.displayPlayerLoss(player.getName());
         }
 
     }
@@ -150,43 +134,26 @@ public final class CrazyEights extends Game
     @Override
     public void play()
     {
+
         // Load the save file
         File saveFile = new File(IOHandler.getSaveFileName());
 
-        // Create a Scanner and ArrayList
-        Scanner input = new Scanner(System.in);
+        // Create an ArrayList
         ArrayList<Player> players = new ArrayList<>();
 
         // Prompt for the name of the player
-        System.out.print("Enter your name: ");
-        String name = input.nextLine();
+        String name = view.getPlayerName();
 
         // Instantiate the player
         HumanPlayer humanPlayer = new HumanPlayer(name);
         players.add(humanPlayer);
 
         // Display a welcome message to the player and print the rules
-        System.out.println("\nGreetings, " + humanPlayer.getName() + ".\nWelcome to " + getName() + ".");
-        displayRules();
+        view.displayWelcome(humanPlayer.getName(), getName());
+        view.displayRules();
 
         // Ask the user how many opponents they would like
-        int numberOfOpponents = 1;
-        try
-        {
-            System.out.print("Enter the number of opponents you would like to play against between 1 and 3: ");
-            numberOfOpponents = input.nextInt();
-        } catch (InputMismatchException ex)
-        {
-            System.out.println("That's not an integer!");
-            System.out.println("Default of 1 is used.");
-        }
-
-        if (numberOfOpponents < 1 || numberOfOpponents > 3)
-        {
-            System.out.println("Number out of range.");
-            System.out.println("Default of one is used.");
-            numberOfOpponents = 1;
-        }
+        int numberOfOpponents = view.getNumberOfOpponents();
 
         // Create the opponents
         createComputerPlayers(numberOfOpponents, players);
@@ -210,13 +177,11 @@ public final class CrazyEights extends Game
 
         if (saveFile.exists())
         {
-            System.out.println("Would you like to restore from save?");
-
-            char answer = input.next().charAt(0);
+            char answer = view.promptRestoreFromSave();
 
             if (answer == 'y')
             {
-                System.out.println("In the retriever");
+                view.display("In the retriever");
                 Retriever retriever = Retriever.getInstance();
                 retriever.restore(discardPile, stockPile, players);
             }

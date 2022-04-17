@@ -2,6 +2,7 @@ package ca.sheridancollege.project.players;
 
 import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
+import ca.sheridancollege.project.game.CrazyEightsUI;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
 import ca.sheridancollege.project.io.Saver;
 import java.util.ArrayList;
@@ -12,12 +13,13 @@ import java.util.Scanner;
  *
  * @author Jayson Evans
  * @author Justin Beaulne
+ * @author Ryan Stewart
  */
 public final class HumanPlayer extends Player
 {
 
-    private transient Scanner input = new Scanner(System.in);
     private transient Saver saver = Saver.getInstance();
+    private CrazyEightsUI view = new CrazyEightsUI(); // TODO singleton
 
     /**
      * @param name to pass to the Player class The player can have any name.
@@ -42,7 +44,7 @@ public final class HumanPlayer extends Player
         int cardNumber = 0;
         cardsPlaced = 0;
 
-        System.out.println("\nThe top card is " + discardPile.getTopCard() + "\n");
+        view.display("\nThe top card is " + discardPile.getTopCard() + "\n");
 
         if (discardPile.hasMatch(hand))
         {
@@ -52,21 +54,17 @@ public final class HumanPlayer extends Player
                 {
                     printUserDialog();
 
-                    System.out.print("Enter a card: ");
+                    String userInput = view.promptForCard();
 
-                    String userNumInput = input.next();
-
-                    char numValue = userNumInput.charAt(0);
+                    char numValue = userInput.charAt(0);
                     if (!Character.isDigit(numValue))
                     {
                         if (numValue == 'q' || numValue == 'Q')
                         {
-                            System.out.println("Are you sure you wanna end the game? (y/n):");
-                            String confirm = input.next();
+                            String confirm = view.promptConfirmQuit();
                             if (confirm.equalsIgnoreCase("y"))
                             {
-                                System.out.println("Do you want to save the game before you go?");
-                                numValue = input.next().charAt(0);
+                                numValue = view.promptForSave();
 
                                 if (numValue == 'y' || numValue == 'Q')
                                 {
@@ -76,32 +74,32 @@ public final class HumanPlayer extends Player
                                 System.exit(0);
                             } else
                             {
-                                System.out.println("The top card is " + discardPile.getTopCard() + "\n");
+                                view.display("The top card is " + discardPile.getTopCard() + "\n");
                                 quitCheck = true;
 
                             }
                         } else
                         {
-                            System.out.println("Please enter a card number or a Q to quit the game");
+                            view.display("Please enter a card number or a Q to quit the game");
                         }
 
                     } else
                     {
                         try
                         {
-                            cardNumber = Integer.parseInt(userNumInput);
+                            cardNumber = Integer.parseInt(userInput);
 
                             if ((isInRange(cardNumber)))
                             {
                                 quitCheck = false;
                             } else
                             {
-                                System.out.println("\"Must enter the correct number corresponding to a card in your hand\"");
+                                view.display("\"Must enter the correct number corresponding to a card in your hand\"");
 
                             }
                         } catch (NumberFormatException nef)
                         {
-                            System.out.println("Error: Must enter the correct number corresponding to a card in your hand");
+                            view.display("Error: Must enter the correct number corresponding to a card in your hand");
 
                         }
 
@@ -118,13 +116,11 @@ public final class HumanPlayer extends Player
                         cardsPlaced++;
                         removeFromHand(cardNumber);
 
-                        System.out.println("You used " + card + "!");
+                        view.display("You used " + card + "!");
 
                         if (discardPile.hasValueMatch(hand))
                         {
-                            System.out.println("Would you like to enter another card (y/n [default]):");
-
-                            String answer = input.next();
+                            String answer = view.promptAnotherCard();
 
                             if (!answer.equalsIgnoreCase("y"))
                             {
@@ -136,17 +132,17 @@ public final class HumanPlayer extends Player
                         }
                     } else
                     {
-                        System.out.println("Please try again.");
+                        view.display("Please try again.");
                     }
                 } else
                 {
-                    System.out.println("Must enter the correct number corresponding to a card in your hand");
+                    view.display("Must enter the correct number corresponding to a card in your hand");
                 }
             } while (entering);
         } else
         {
-            System.out.println(getName() + " has no moves.");
-            System.out.println("Pick up one and skip turn.");
+            view.display(getName() + " has no moves.");
+            view.display("Pick up one and skip turn.");
 
             if (stockPile.isEmpty())
             {

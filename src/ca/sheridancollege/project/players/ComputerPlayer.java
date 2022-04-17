@@ -2,6 +2,7 @@ package ca.sheridancollege.project.players;
 
 import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
+import ca.sheridancollege.project.game.CrazyEightsUI;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
 import java.util.ArrayList;
 
@@ -10,9 +11,13 @@ import java.util.ArrayList;
  *
  * @author Jayson Evans
  * @author Justin Beaulne 
+ * @author Ryan Stewart
  */
 public final class ComputerPlayer extends Player
 {
+
+    private CrazyEightsUI view = new CrazyEightsUI(); // TODO singleton
+
     /**
      * @param name to pass to the Player class
      * Name's for computer should generally follow
@@ -33,7 +38,7 @@ public final class ComputerPlayer extends Player
     @Override
     public void play(DiscardPile discardPile, StockPile stockPile, ArrayList<Player> players)
     {
-        System.out.println("\nThe top card is " + discardPile.getTopCard() + "\n");
+        view.display("\nThe top card is " + discardPile.getTopCard() + "\n");
         
         boolean entering = true;
         
@@ -60,7 +65,7 @@ public final class ComputerPlayer extends Player
                         cardsPlacedThisTurn++;
                         removeFromHand(cardNumber);
                         
-                        System.out.println( getName() + " used " + card + "!");
+                        view.display( getName() + " used " + card + "!");
 
                         if (!discardPile.hasValueMatch(hand))
                         {
@@ -69,12 +74,12 @@ public final class ComputerPlayer extends Player
                     }
                     else
                     {
-                        System.out.println("Please try again.");
+                        view.display("Please try again.");
                     }
                 }
                 else
                 {
-                    System.out.println("Must enter the correct number corresponding to a card in your hand");
+                    view.display("Must enter the correct number corresponding to a card in your hand");
                 } 
             } while (entering);
         }
@@ -95,7 +100,7 @@ public final class ComputerPlayer extends Player
                         cardsPlacedThisTurn++;
                         removeFromHand(cardNumber);
                         
-                        System.out.println(getName() + " used " + card + "!");
+                        view.display(getName() + " used " + card + "!");
 
                         if (!discardPile.hasValueMatch(hand))
                         {
@@ -104,19 +109,19 @@ public final class ComputerPlayer extends Player
                     }
                     else
                     {
-                        System.out.println("Please try again.");
+                        view.display("Please try again.");
                     }
                 }
                 else
                 {
-                    System.out.println("Must enter the correct number corresponding to a card in your hand");
+                    view.display("Must enter the correct number corresponding to a card in your hand");
                 } 
             } while (entering);
         }
         else
         {
-            System.out.println(getName() + " has no moves.");
-            System.out.println("Pick up one and skip turn.");
+            view.display(getName() + " has no moves.");
+            view.display("Pick up one and skip turn.");
             
             if (stockPile.isEmpty())
             {

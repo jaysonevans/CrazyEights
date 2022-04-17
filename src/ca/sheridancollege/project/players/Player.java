@@ -8,6 +8,8 @@ package ca.sheridancollege.project.players;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
 import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
+import ca.sheridancollege.project.game.CrazyEightsUI;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.io.Serializable;
@@ -20,6 +22,7 @@ import java.util.Scanner;
  * @author Paul Bonenfant Jan 2020
  * @author Jayson Evans Feb 2022
  * @author Justin Beaulne March 2022 
+ * @author Ryan Stewart April 2022
  */
 public abstract class Player implements Cloneable, Serializable
 {
@@ -27,6 +30,7 @@ public abstract class Player implements Cloneable, Serializable
     private String name; //the unique name for this player
     public int cardsPlaced = 0;
     protected ArrayList<CrazyEightsCard> hand = new ArrayList<>();
+    private CrazyEightsUI view = new CrazyEightsUI(); // TODO maybe make this singleton later and getInstance
 
     /**
      * A constructor that allows you to set the player's unique ID
@@ -98,11 +102,12 @@ public abstract class Player implements Cloneable, Serializable
      */
     public void printHand()
     {
-        System.out.println("Your hand is:");
+        view.display("Your hand is:");
         Collections.sort(hand);
         for (int i = 0; i < hand.size(); i++)
         {
-            System.out.printf("%d: %-6sof %s\n", i, hand.get(i).getValue(), hand.get(i).getSuit());
+            // System.out.printf("%d: %-6sof %s\n", i, hand.get(i).getValue(), hand.get(i).getSuit());
+            view.printCard(hand.get(i).getValue(), hand.get(i).getSuit(), i);
         }
     }
     

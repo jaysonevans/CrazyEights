@@ -1,6 +1,7 @@
 package ca.sheridancollege.project.cards;
 
 
+import ca.sheridancollege.project.game.CrazyEightsUI;
 import ca.sheridancollege.project.players.Player;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +17,7 @@ public final class StockPile extends GroupOfCards
 {
     
     public static StockPile instance = null;
+    private CrazyEightsUI view = new CrazyEightsUI(); // TODO singleton 
 
     /**
      * Constructs a stock pile with a size equal
@@ -127,10 +129,10 @@ public final class StockPile extends GroupOfCards
         Collections.sort(cards);
         //Collections.shuffle(cards);
         
-        System.out.println("The stock pile contains:");
+        view.display("The stock pile contains:");
         for (CrazyEightsCard card: cards)
         {
-            System.out.printf("%-6sof %s\n", card.getValue(), card.getSuit());
+            view.printCard(card);
         }
     }
     
