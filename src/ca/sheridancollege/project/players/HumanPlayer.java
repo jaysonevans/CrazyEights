@@ -19,7 +19,7 @@ public final class HumanPlayer extends Player
 {
 
     private transient Saver saver = Saver.getInstance();
-    private CrazyEightsUI view = new CrazyEightsUI(); // TODO singleton
+    private CrazyEightsUI view = CrazyEightsUI.getInstance();
 
     /**
      * @param name to pass to the Player class The player can have any name.

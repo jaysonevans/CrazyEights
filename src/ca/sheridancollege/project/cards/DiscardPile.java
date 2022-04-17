@@ -19,7 +19,7 @@ public final class DiscardPile extends GroupOfCards
 
     private boolean addSuccessful = false; // Used for when prompting for another card
     public static DiscardPile instance = null;
-    private CrazyEightsUI view = new CrazyEightsUI(); // TODO singleton
+    private CrazyEightsUI view = CrazyEightsUI.getInstance();
     
     /**
      * Constructs a discard pile with a size equal to 

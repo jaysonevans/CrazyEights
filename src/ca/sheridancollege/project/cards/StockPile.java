@@ -17,7 +17,7 @@ public final class StockPile extends GroupOfCards
 {
     
     public static StockPile instance = null;
-    private CrazyEightsUI view = new CrazyEightsUI(); // TODO singleton 
+    private CrazyEightsUI view = CrazyEightsUI.getInstance();
 
     /**
      * Constructs a stock pile with a size equal

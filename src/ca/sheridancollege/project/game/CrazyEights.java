@@ -30,7 +30,7 @@ public final class CrazyEights extends Game
 
     public static final String NAME = "Crazy Eights";
     public static final int NUMBER_OF_STARTING_CARDS = 8;
-    private CrazyEightsUI view = new CrazyEightsUI(); // create the view
+    private CrazyEightsUI view = CrazyEightsUI.getInstance(); // create the view
 
     /**
      * Constructor isn't supposed to be used as a typical object, more as a

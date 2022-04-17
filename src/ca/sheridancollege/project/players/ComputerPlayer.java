@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public final class ComputerPlayer extends Player
 {
 
-    private CrazyEightsUI view = new CrazyEightsUI(); // TODO singleton
+    private CrazyEightsUI view = CrazyEightsUI.getInstance();
 
     /**
      * @param name to pass to the Player class
