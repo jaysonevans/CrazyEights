@@ -200,10 +200,10 @@ public final class CrazyEights extends Game
         CrazyEightsCard startingCard = new CrazyEightsCard(randomSuit, randomValue);
 
         // Instantiate the stock pile and fill it with all but the random card
-        StockPile stockPile = new StockPile(startingCard);
+        StockPile stockPile = StockPile.getInstance(startingCard);
 
         // Create the discard pile and give one card to it
-        DiscardPile discardPile = new DiscardPile(startingCard);
+        DiscardPile discardPile = DiscardPile.getInstance(startingCard);
 
         // Deal the cards
         deal(players, stockPile);

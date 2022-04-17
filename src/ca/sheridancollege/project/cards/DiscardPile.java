@@ -18,14 +18,22 @@ public final class DiscardPile extends GroupOfCards
 
     private transient Scanner input = new Scanner(System.in);
     private boolean addSuccessful = false; // Used for when prompting for another card
+    public static DiscardPile instance = null;
     
     /**
      * Constructs a discard pile with a size equal to 
      * that of the deck.
      */
-    public DiscardPile()
-    {
-        super(NUMBER_OF_VALUES * NUMBER_OF_SUITS);
+    // public DiscardPile()
+    // {
+    //     super(NUMBER_OF_VALUES * NUMBER_OF_SUITS);
+    // }
+
+    public static DiscardPile getInstance(CrazyEightsCard startingCard) {
+        if (instance == null) {
+            instance = new DiscardPile(startingCard);
+        }
+        return instance;
     }
     
     /**
@@ -35,7 +43,7 @@ public final class DiscardPile extends GroupOfCards
      * @param startingCard the card to be at the top of
      * the discard pile.
      */
-    public DiscardPile(CrazyEightsCard startingCard)
+    private DiscardPile(CrazyEightsCard startingCard)
     {
         super(NUMBER_OF_VALUES * NUMBER_OF_SUITS);
         add(startingCard);

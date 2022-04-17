@@ -35,10 +35,10 @@ public class TestComputerAI
             CrazyEightsCard startingCard = new CrazyEightsCard(randomSuit, randomValue);
 
             // 7. Instantiate the stock pile and fill it with all but the random card
-            StockPile stockPile = new StockPile(startingCard);
+            StockPile stockPile = StockPile.getInstance(startingCard);
 
             // 8. Create the discard pile and give one card to it
-            DiscardPile discardPile = new DiscardPile(startingCard);
+            DiscardPile discardPile = DiscardPile.getInstance(startingCard);
 
             // 9. Deal the cards
             // To the opponent

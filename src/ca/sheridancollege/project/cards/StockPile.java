@@ -15,13 +15,28 @@ import java.util.Collections;
 public final class StockPile extends GroupOfCards
 {
     
+    public static StockPile instance = null;
+
     /**
      * Constructs a stock pile with a size equal
      * to that of the deck.
      */
-    public StockPile()
-    {
-        super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
+    // private StockPile()
+    // {
+    //     super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
+    // }
+
+    /**
+     * Singleton getInstance method that returns the existing instance of StockPile if it already exists
+     * 
+     * @param startingCard
+     * @return
+     */
+    public static StockPile getInstance(CrazyEightsCard startingCard) {
+        if (instance == null) {
+            instance = new StockPile(startingCard);
+        }
+        return instance;
     }
     
     /**
@@ -32,7 +47,7 @@ public final class StockPile extends GroupOfCards
      * 
      * @param startingCard 
      */
-    public StockPile(CrazyEightsCard startingCard)
+    private StockPile(CrazyEightsCard startingCard)
     {
         super(NUMBER_OF_VALUES * NUMBER_OF_SUITS); // GroupOfCards constructor, placeholder value
         restock(startingCard);

@@ -16,11 +16,12 @@ public class TestDiscardPile
 
     public static void main(String[] args)
     {
-        // Instantiate a discard pile
-        DiscardPile discardPile = new DiscardPile();
         
         // Add the first card to the pile, should not produce error
         CrazyEightsCard card = new CrazyEightsCard(Suit.HEARTS, Value.FIVE);
+
+        // Instantiate a discard pile
+        DiscardPile discardPile = DiscardPile.getInstance(card);
         
         discardPile.add(card);
         

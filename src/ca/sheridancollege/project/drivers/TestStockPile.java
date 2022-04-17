@@ -15,10 +15,12 @@ public class TestStockPile
 {
     public static void main(String[] args)
     {
-        StockPile stockPile = new StockPile(); // Create a stock pile
+        
         
         // Create a card assumed to be the top card in the discard pile
         CrazyEightsCard card = new CrazyEightsCard(Suit.CLUBS, Value.JACK);
+
+        StockPile stockPile = StockPile.getInstance(card); // Create a stock pile
         
         stockPile.restock(card); // Restock the cards
         
