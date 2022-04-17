@@ -21,6 +21,9 @@ public class Retriever extends IOHandler
 
     private static Retriever instance = null;
 
+    /**
+     * Private constructor for Singleton design pattern.
+     */
     private Retriever()
     {
 
@@ -41,6 +44,7 @@ public class Retriever extends IOHandler
 
     /**
      * Sets objects in the game according to what they are in the save file.
+     *
      * @param discardPile
      * @param stockPile
      * @param players
@@ -54,11 +58,11 @@ public class Retriever extends IOHandler
                 try
                 {
                     discardPile = (DiscardPile) input.readObject();
+                    discardPile.printPile();
                     stockPile = (StockPile) input.readObject();
                     players = (ArrayList<Player>) input.readObject();
                 } catch (ClassNotFoundException ex)
                 {
-                    ex.printStackTrace();
                 } catch (EOFException ex)
                 {
                     System.out.println("File " + SAVE_FILE_NAME + " unexpectedly ended");
@@ -66,7 +70,6 @@ public class Retriever extends IOHandler
             }
         } catch (IOException ex)
         {
-            ex.printStackTrace();
         }
 
     }

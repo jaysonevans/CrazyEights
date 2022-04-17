@@ -5,6 +5,7 @@
  */
 package ca.sheridancollege.project.cards;
 
+import ca.sheridancollege.project.game.CrazyEightsUI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.io.Serializable;
@@ -29,6 +30,7 @@ public class GroupOfCards implements Serializable
 
     //The group of cards, stored in an ArrayList
     protected ArrayList<CrazyEightsCard> cards = new ArrayList<>();
+    protected transient CrazyEightsUI view = CrazyEightsUI.getInstance();
     private int size;//the size of the grouping
 
     public GroupOfCards(int size)
@@ -65,5 +67,17 @@ public class GroupOfCards implements Serializable
     public void setSize(int size)
     {
         this.size = size;
+    }
+
+    /**
+     * Print the cards in the pile. Mainly for testing.
+     */
+    public void printPile()
+    {
+        view.display("The discard pile contains:");
+        for (CrazyEightsCard card : cards)
+        {
+            view.printCard(card);
+        }
     }
 }//end class

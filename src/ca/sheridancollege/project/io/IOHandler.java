@@ -7,10 +7,11 @@ package ca.sheridancollege.project.io;
  */
 public abstract class IOHandler
 {
-        protected static final String SAVE_FILE_NAME = "save.dat";
-        
-        public static String getSaveFileName()
-        {
-            return SAVE_FILE_NAME;
-        }
+
+    protected static final String SAVE_FILE_NAME = "save.dat";
+
+    public static String getSaveFileName()
+    {
+        return SAVE_FILE_NAME;
+    }
 }

@@ -30,7 +30,7 @@ public abstract class Player implements Cloneable, Serializable
     private String name; //the unique name for this player
     public int cardsPlaced = 0;
     protected ArrayList<CrazyEightsCard> hand = new ArrayList<>();
-    private CrazyEightsUI view = CrazyEightsUI.getInstance();
+    protected transient CrazyEightsUI view = CrazyEightsUI.getInstance();
 
     /**
      * A constructor that allows you to set the player's unique ID

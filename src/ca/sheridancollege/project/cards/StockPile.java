@@ -17,7 +17,6 @@ public final class StockPile extends GroupOfCards
 {
     
     public static StockPile instance = null;
-    private CrazyEightsUI view = CrazyEightsUI.getInstance();
 
     /**
      * Constructs a stock pile with a size equal
@@ -124,16 +123,13 @@ public final class StockPile extends GroupOfCards
      * Display the contents of the stock pile.
      * Mainly used for testing purposes.
      */
+    @Override
     public void printPile()
     {
         Collections.sort(cards);
         //Collections.shuffle(cards);
         
-        view.display("The stock pile contains:");
-        for (CrazyEightsCard card: cards)
-        {
-            view.printCard(card);
-        }
+        super.printPile();
     }
     
     public void giveCards(ArrayList<CrazyEightsCard> cards, Player opponent, int cardPickUp, StockPile stockPile)

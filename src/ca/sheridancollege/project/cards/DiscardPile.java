@@ -1,9 +1,7 @@
 package ca.sheridancollege.project.cards;
 
-
 import ca.sheridancollege.project.game.CrazyEightsUI;
 import ca.sheridancollege.project.players.Player;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -12,44 +10,41 @@ import java.util.Random;
  *
  * @author Jayson Evans
  * @author Ryan Stewart
- * @author Justin Beaulne March 2022 
+ * @author Justin Beaulne March 2022
  */
 public final class DiscardPile extends GroupOfCards
 {
 
     private boolean addSuccessful = false; // Used for when prompting for another card
     public static DiscardPile instance = null;
-    private CrazyEightsUI view = CrazyEightsUI.getInstance();
-    
+
     /**
-     * Constructs a discard pile with a size equal to 
-     * that of the deck.
+     * Constructs a discard pile with a size equal to that of the deck.
      */
     // public DiscardPile()
     // {
     //     super(NUMBER_OF_VALUES * NUMBER_OF_SUITS);
     // }
-
-    public static DiscardPile getInstance(CrazyEightsCard startingCard) {
-        if (instance == null) {
+    public static DiscardPile getInstance(CrazyEightsCard startingCard)
+    {
+        if (instance == null)
+        {
             instance = new DiscardPile(startingCard);
         }
         return instance;
     }
-    
+
     /**
-     * Constructs a discard pile with a size equal to
-     * that of the deck
-     * 
-     * @param startingCard the card to be at the top of
-     * the discard pile.
+     * Constructs a discard pile with a size equal to that of the deck
+     *
+     * @param startingCard the card to be at the top of the discard pile.
      */
     private DiscardPile(CrazyEightsCard startingCard)
     {
         super(NUMBER_OF_VALUES * NUMBER_OF_SUITS);
         add(startingCard);
     }
-    
+
     /**
      * @return whether the addition to the discard pile was successful
      */
@@ -57,23 +52,18 @@ public final class DiscardPile extends GroupOfCards
     {
         return addSuccessful;
     }
-    
+
     /**
-     * There are three cases when adding a card:
-     *  1.  The pile is empty, which would mean that 
-     *      this is the first card to be added to the pile.
-     *      Since this is the first card, it will be added
-     *      regardless of the suit and value.
-     *  2.  The card is an eight, which means we would have
-     *      to request what the player wants the first suit
-     *      in the pile to be. Elaborated more in the addEight()
-     *      method.
-     *  3.  The card has a matching suit or value.  In which case
-     *      just add it to the deck.
-     *  4.  The card does not have a matching suit or value.  In 
-     *      which case, do not add it and print and error message
-     *      to the console.
-     * 
+     * There are three cases when adding a card: 1. The pile is empty, which
+     * would mean that this is the first card to be added to the pile. Since
+     * this is the first card, it will be added regardless of the suit and
+     * value. 2. The card is an eight, which means we would have to request what
+     * the player wants the first suit in the pile to be. Elaborated more in the
+     * addEight() method. 3. The card has a matching suit or value. In which
+     * case just add it to the deck. 4. The card does not have a matching suit
+     * or value. In which case, do not add it and print and error message to the
+     * console.
+     *
      * @param card to add to the discard pile
      */
     public void add(CrazyEightsCard card)
@@ -82,28 +72,25 @@ public final class DiscardPile extends GroupOfCards
         if (cards.isEmpty())
         {
             cards.add(card);
-            addSuccessful = true;          
-        }
-        else 
-        {   
+            addSuccessful = true;
+        } else
+        {
             if (cardIsEight(card))
             {
                 addEight(card);
                 addSuccessful = true;
-            }
-            else if (topCardMatches(card))
+            } else if (topCardMatches(card))
             {
                 cards.add(card);
                 addSuccessful = true;
-            }
-            else
+            } else
             {
                 printCardDoesNotMatch(card);
                 addSuccessful = false;
             }
         }
     }
-    
+
     // used for the computer opponent to hand eight cards 
     public void add(CrazyEightsCard card, String name)
     {
@@ -112,28 +99,25 @@ public final class DiscardPile extends GroupOfCards
         {
             cards.add(card);
             addSuccessful = true;
-            
-        }
-        else 
-        {   
+
+        } else
+        {
             if (cardIsEight(card))
             {
                 addEight(card, name);
                 addSuccessful = true;
-            }
-            else if (topCardMatches(card))
+            } else if (topCardMatches(card))
             {
                 cards.add(card);
                 addSuccessful = true;
-            }
-            else
+            } else
             {
                 printCardDoesNotMatch(card);
                 addSuccessful = false;
             }
         }
     }
-    
+
     /**
      * @return the card at the top of the discard pile
      */
@@ -141,50 +125,49 @@ public final class DiscardPile extends GroupOfCards
     {
         return cards.get(cards.size() - 1);
     }
-    
+
     /**
-     * Prints a simple error message to the screen telling
-     * the user their card was not added.
-     * 
+     * Prints a simple error message to the screen telling the user their card
+     * was not added.
+     *
      * @param card the card that was the user tried to put
      */
     public void printCardDoesNotMatch(CrazyEightsCard card)
     {
-        String output = "Error: " + card.toString() + " does not match " +
-                getTopCard().toString() + "'s suit or value.\nNo card was added.";
-        
+        String output = "Error: " + card.toString() + " does not match "
+                + getTopCard().toString() + "'s suit or value.\nNo card was added.";
+
         view.display(output);
     }
-    
+
     /**
-     * Doesn't look for an identical match but a match 
-     * between suit and suit or value and value.
-     * 
+     * Doesn't look for an identical match but a match between suit and suit or
+     * value and value.
+     *
      * @param card to be compared with the top card
      * @return true if the card can be placed on the top card
      */
     public boolean topCardMatches(CrazyEightsCard card)
     {
         CrazyEightsCard topCard = getTopCard();
-        
+
         return (card.getSuit() == topCard.getSuit() || card.getValue() == topCard.getValue());
     }
-    
+
     /**
-     * Looks for a match in the value of the card. To be
-     * Used with the AI for selection purposes after their
-     * initial card has been placed.
-     * 
+     * Looks for a match in the value of the card. To be Used with the AI for
+     * selection purposes after their initial card has been placed.
+     *
      * @param card
-     * @return 
+     * @return
      */
     public boolean topCardValueMatches(CrazyEightsCard card)
     {
         CrazyEightsCard topCard = getTopCard();
-        
+
         return card.getValue() == topCard.getValue();
     }
-    
+
     /**
      * @param card to be tested
      * @return true if the card is an eight
@@ -193,66 +176,62 @@ public final class DiscardPile extends GroupOfCards
     {
         return card.getValue() == Value.EIGHT;
     }
-    
+
     public boolean cardIsTwo(CrazyEightsCard card)
     {
         return card.getValue() == Value.TWO;
     }
-   
+
     public boolean CardIsQueenOfSpades(CrazyEightsCard card)
     {
         return card.getValue() == Value.QUEEN && card.getSuit() == Suit.SPADES;
     }
-    
+
     public int searchDiscardPile(ArrayList<CrazyEightsCard> cards, int cardsPlaced)
     {
-       int pickUpAmount = 0;
-       int pileSize = cards.size() - cardsPlaced ; // start the search at the spot where the players last placed card is 
-       for(int i = 0; i < cardsPlaced; i++)
-       {
+        int pickUpAmount = 0;
+        int pileSize = cards.size() - cardsPlaced; // start the search at the spot where the players last placed card is 
+        for (int i = 0; i < cardsPlaced; i++)
+        {
 
-           if(cardIsTwo(cards.get(pileSize)))
-           {
-              
-               pickUpAmount += 2;
-           }
-           else if (CardIsQueenOfSpades(cards.get(pileSize)))
-           {
-               pickUpAmount += 5;
-           }
-           pileSize++;
-           
-       }
+            if (cardIsTwo(cards.get(pileSize)))
+            {
+
+                pickUpAmount += 2;
+            } else if (CardIsQueenOfSpades(cards.get(pileSize)))
+            {
+                pickUpAmount += 5;
+            }
+            pileSize++;
+
+        }
         return pickUpAmount;
     }
-    
+
     /**
-     * Asks the user what they'd like to change
-     * the suit of the top card to and then 
-     * changes the suit value of the card.
-     * 
-     * These suit values do not have an reappear 
-     * when restocking the deck because the method
-     * restocks the deck with newly created cards.
-     * 
-     * If an eight is at the top of the discard pile
-     * when reshuffling, the restock just assumes it's
-     * what it says it is and creates eights of different
-     * suits. Extremely minor and improbable but may be
-     * something to address later.
-     * 
+     * Asks the user what they'd like to change the suit of the top card to and
+     * then changes the suit value of the card.
+     *
+     * These suit values do not have an reappear when restocking the deck
+     * because the method restocks the deck with newly created cards.
+     *
+     * If an eight is at the top of the discard pile when reshuffling, the
+     * restock just assumes it's what it says it is and creates eights of
+     * different suits. Extremely minor and improbable but may be something to
+     * address later.
+     *
      * @param card which has the value EIGHT
      */
     public void addEight(CrazyEightsCard card)
     {
         boolean go = true; // sentinel value to ensure a correct suit number was entered
-        
+
         // Get the suit from the user and validate it
         while (go)
         {
-            
+
             int newSuit = view.promptForSuit();; // Get the inputted suit number
-            
+
             // Find the corresponding suit
             // If no suit matches, report an error
             switch (newSuit)
@@ -278,22 +257,21 @@ public final class DiscardPile extends GroupOfCards
                     break;
             }
         }
-        
+
         cards.add(card); // Add the modified card to the pile
     }
-    
-     public void addEight(CrazyEightsCard card, String name)
+
+    public void addEight(CrazyEightsCard card, String name)
     {
         boolean go = true; // sentinel value to ensure a correct suit number was entered
-        
+
         // Get the suit from the user and validate it
         while (go)
         {
             view.promptForSuit();
             Random random = new Random();
             int newSuit = random.nextInt(NUMBER_OF_SUITS - 1);
-            
-            
+
             // Find the corresponding suit
             // If no suit matches, report an error
             switch (newSuit)
@@ -322,48 +300,35 @@ public final class DiscardPile extends GroupOfCards
         view.display(name + " Changed the suit to " + card.getSuit() + "\n");
         cards.add(card); // Add the modified card to the pile
     }
-    public void addingCards(Player player,StockPile stockPile, DiscardPile discardPile, Player opponent)
+
+    public void addingCards(Player player, StockPile stockPile, DiscardPile discardPile, Player opponent)
     {
-        
-        
-        int pickUpAmount = discardPile.searchDiscardPile(discardPile.getCards(),player.getCardsPlaced());
+
+        int pickUpAmount = discardPile.searchDiscardPile(discardPile.getCards(), player.getCardsPlaced());
         stockPile.giveCards(stockPile.getCards(), opponent, pickUpAmount, stockPile);
-      
+
     }
-        
+
     /**
-     * Print the cards in the pile.
-     * Mainly for testing.
-     */
-    public void printPile()
-    {
-        view.display("The discard pile contains:");
-        for (CrazyEightsCard card: cards)
-        {
-            view.printCard(card);
-        }
-    }
-    
-    /**
-     * Clear the discard pile for reuse in the stock pile
-     * except for the top card.
+     * Clear the discard pile for reuse in the stock pile except for the top
+     * card.
      */
     public void restock()
     {
         CrazyEightsCard card = getTopCard();
-        
+
         cards.clear();
-        
+
         cards.add(card);
     }
-    
+
     /**
      * @param hand the user's cards
-     * @return 
+     * @return
      */
     public boolean hasMatch(ArrayList<CrazyEightsCard> hand)
-    {  
-        for (CrazyEightsCard card: hand)
+    {
+        for (CrazyEightsCard card : hand)
         {
             if (topCardMatches(card))
             {
@@ -372,28 +337,28 @@ public final class DiscardPile extends GroupOfCards
         }
         return false;
     }
-    
+
     /**
      * To check whether the user can enter a second card.
-     * 
+     *
      * @param hand the user's cards
-     * @return true if the value of the top card and one of
-     * the user's cards match
+     * @return true if the value of the top card and one of the user's cards
+     * match
      */
     public boolean hasValueMatch(ArrayList<CrazyEightsCard> hand)
     {
         boolean hasValueMatch = false;
-        
+
         CrazyEightsCard topCard = getTopCard();
-        
-        for (CrazyEightsCard card: hand)
+
+        for (CrazyEightsCard card : hand)
         {
             if (card.getValue().ordinal() == topCard.getValue().ordinal())
             {
                 hasValueMatch = true;
             }
         }
-        
+
         return hasValueMatch;
     }
 }
