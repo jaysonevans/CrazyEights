@@ -16,7 +16,7 @@ import java.util.Random;
 public final class DiscardPile extends GroupOfCards
 {
 
-    private Scanner input = new Scanner(System.in);
+    private transient Scanner input = new Scanner(System.in);
     private boolean addSuccessful = false; // Used for when prompting for another card
     
     /**

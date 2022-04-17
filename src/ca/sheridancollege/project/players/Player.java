@@ -10,6 +10,8 @@ import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.Serializable;
+import java.util.Scanner;
 
 /**
  * A class that models each Player in the game. Players have an identifier, which should be unique.
@@ -19,7 +21,7 @@ import java.util.Collections;
  * @author Jayson Evans Feb 2022
  * @author Justin Beaulne March 2022 
  */
-public abstract class Player implements Cloneable
+public abstract class Player implements Cloneable, Serializable
 {
 
     private String name; //the unique name for this player
@@ -81,7 +83,7 @@ public abstract class Player implements Cloneable
      * @param discardPile
      * @param stockPile
      */
-    public abstract void play(DiscardPile discardPile, StockPile stockPile);
+    public abstract void play(DiscardPile discardPile, StockPile stockPile, ArrayList<Player> players);
     
     /**
      * @param card to be added to the player's hand

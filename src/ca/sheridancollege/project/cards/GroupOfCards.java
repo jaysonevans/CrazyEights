@@ -5,27 +5,28 @@
  */
 package ca.sheridancollege.project.cards;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.Serializable;
 
 /**
- * A concrete class that represents any grouping of cards for a Game. HINT, you might want to subclass this more than
- * once. The group of cards has a maximum size attribute which is flexible for reuse.
+ * A concrete class that represents any grouping of cards for a Game. HINT, you
+ * might want to subclass this more than once. The group of cards has a maximum
+ * size attribute which is flexible for reuse.
  *
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  * @author Jayson Evans Feb 2022
  * @author Ryan Stewart
- * @author Justin Beaulne March 2022 
+ * @author Justin Beaulne March 2022
  */
-public class GroupOfCards
+public class GroupOfCards implements Serializable
 {
 
     // Constants add modularity to the number of cards in the game
     public final static int NUMBER_OF_VALUES = Value.values().length;
     public final static int NUMBER_OF_SUITS = Suit.values().length;
-    
+
     //The group of cards, stored in an ArrayList
     protected ArrayList<CrazyEightsCard> cards = new ArrayList<>();
     private int size;//the size of the grouping
@@ -65,5 +66,4 @@ public class GroupOfCards
     {
         this.size = size;
     }
-
 }//end class

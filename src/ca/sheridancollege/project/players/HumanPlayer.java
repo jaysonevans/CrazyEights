@@ -3,47 +3,47 @@ package ca.sheridancollege.project.players;
 import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
+import ca.sheridancollege.project.io.Saver;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 /**
  * This class represents a human player.
  *
  * @author Jayson Evans
- * @author Justin Beaulne 
+ * @author Justin Beaulne
  */
 public final class HumanPlayer extends Player
 {
-    //private ArrayList<CrazyEightsCard> hand = new ArrayList<>();
-    private Scanner input = new Scanner(System.in);
-    
+
+    private transient Scanner input = new Scanner(System.in);
+    private transient Saver saver = Saver.getInstance();
+
     /**
-     * @param name to pass to the Player class
-     * The player can have any name.
+     * @param name to pass to the Player class The player can have any name.
      */
     public HumanPlayer(String name)
     {
         super(name);
     }
-    
+
     /**
-     * To be called by the game to initiate the
-     * player's turn. Requires user input.
-     * 
+     * To be called by the game to initiate the player's turn. Requires user
+     * input.
+     *
      * @param discardPile the pile where cards are discarded
      * @param stockPile the stock of cards for pick ups
      */
     @Override
-    public void play(DiscardPile discardPile, StockPile stockPile)
+    public void play(DiscardPile discardPile, StockPile stockPile, ArrayList<Player> players)
     {
         boolean quitCheck = true;
         boolean entering = true;
         int cardNumber = 0;
         cardsPlaced = 0;
-        
-        System.out.println("\nThe top card is " + discardPile.getTopCard() +"\n");
-        
+
+        System.out.println("\nThe top card is " + discardPile.getTopCard() + "\n");
+
         if (discardPile.hasMatch(hand))
         {
             do
@@ -51,113 +51,111 @@ public final class HumanPlayer extends Player
                 do
                 {
                     printUserDialog();
-                
+
                     System.out.print("Enter a card: ");
-        
+
                     String userNumInput = input.next();
-                    
+
                     char numValue = userNumInput.charAt(0);
-                    if(!Character.isDigit(numValue))
+                    if (!Character.isDigit(numValue))
                     {
                         if (numValue == 'q' || numValue == 'Q')
                         {
                             System.out.println("Are you sure you wanna end the game? (y/n):");
                             String confirm = input.next();
-                            if(confirm.equalsIgnoreCase("y"))
+                            if (confirm.equalsIgnoreCase("y"))
                             {
+                                System.out.println("Do you want to save the game before you go?");
+                                numValue = input.next().charAt(0);
+
+                                if (numValue == 'y' || numValue == 'Q')
+                                {
+                                    saver.save(discardPile, stockPile, players);
+                                }
+
                                 System.exit(0);
-                            }
-                            else
+                            } else
                             {
-                                System.out.println("The top card is " + discardPile.getTopCard() +"\n");
+                                System.out.println("The top card is " + discardPile.getTopCard() + "\n");
                                 quitCheck = true;
-                                
+
                             }
-                        }
-                        else
+                        } else
                         {
                             System.out.println("Please enter a card number or a Q to quit the game");
                         }
-                  
-                    }
-                    else 
+
+                    } else
                     {
                         try
                         {
                             cardNumber = Integer.parseInt(userNumInput);
-                         
+
                             if ((isInRange(cardNumber)))
                             {
                                 quitCheck = false;
-                            }
-                        
-                            else
+                            } else
                             {
                                 System.out.println("\"Must enter the correct number corresponding to a card in your hand\"");
-                           
+
                             }
-                        }
-                        catch (NumberFormatException nef)
+                        } catch (NumberFormatException nef)
                         {
                             System.out.println("Error: Must enter the correct number corresponding to a card in your hand");
-                            
+
                         }
-                        
-                     }
-                } while(quitCheck);
-                
+
+                    }
+                } while (quitCheck);
+
                 if (isInRange(cardNumber))
                 {
                     discardPile.add(hand.get(cardNumber));
-                    
+
                     if (discardPile.isAddSuccessful())
                     {
                         CrazyEightsCard card = hand.get(cardNumber);
                         cardsPlaced++;
                         removeFromHand(cardNumber);
-                        
+
                         System.out.println("You used " + card + "!");
 
-                        if (discardPile.hasValueMatch(hand)) 
+                        if (discardPile.hasValueMatch(hand))
                         {
                             System.out.println("Would you like to enter another card (y/n [default]):");
 
                             String answer = input.next();
 
-                            if (!answer.equalsIgnoreCase("y")) 
+                            if (!answer.equalsIgnoreCase("y"))
                             {
                                 entering = false;
                             }
-                        } 
-                        else 
+                        } else
                         {
                             entering = false;
                         }
-                    }
-                    else
+                    } else
                     {
                         System.out.println("Please try again.");
                     }
-                }
-                else
+                } else
                 {
                     System.out.println("Must enter the correct number corresponding to a card in your hand");
-                } 
+                }
             } while (entering);
-        }
-        else
+        } else
         {
             System.out.println(getName() + " has no moves.");
             System.out.println("Pick up one and skip turn.");
-            
+
             if (stockPile.isEmpty())
             {
                 discardPile.restock();
                 stockPile.restock(discardPile.getTopCard());
             }
-            
+
             addToHand(stockPile.pickUp());
         }
-        
+
     }
 }

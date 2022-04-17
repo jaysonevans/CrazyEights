@@ -3,6 +3,7 @@ package ca.sheridancollege.project.players;
 import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
+import java.util.ArrayList;
 
 /**
  * This class represents an AI player.
@@ -12,9 +13,6 @@ import ca.sheridancollege.project.cards.CrazyEightsCard;
  */
 public final class ComputerPlayer extends Player
 {
-    
-    //private ArrayList<CrazyEightsCard> hand = new ArrayList<>();
-    
     /**
      * @param name to pass to the Player class
      * Name's for computer should generally follow
@@ -30,9 +28,10 @@ public final class ComputerPlayer extends Player
      * computer's turn.Does not require user input.
      * @param discardPile
      * @param stockPile
+     * @param players
      */
     @Override
-    public void play(DiscardPile discardPile, StockPile stockPile)
+    public void play(DiscardPile discardPile, StockPile stockPile, ArrayList<Player> players)
     {
         System.out.println("\nThe top card is " + discardPile.getTopCard() + "\n");
         

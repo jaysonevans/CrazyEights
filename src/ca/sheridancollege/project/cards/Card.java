@@ -5,6 +5,8 @@
  */
 package ca.sheridancollege.project.cards;
 
+import java.io.Serializable;
+
 /**
  * A class to be used as the base Card class for the project. Must be general enough to be instantiated for any Card
  * game. Students wishing to add to the code should remember to add themselves as a modifier.
@@ -13,7 +15,7 @@ package ca.sheridancollege.project.cards;
  * @author Jayson Evans Feb 2022
  * @author Justin Beaulne March 2022 
  */
-public abstract class Card
+public abstract class Card implements Serializable
 {
     //default modifier for child classes
 

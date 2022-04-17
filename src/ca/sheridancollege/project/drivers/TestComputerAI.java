@@ -48,14 +48,14 @@ public class TestComputerAI
                 com.addToHand(card);
             }
 
-            com.play(discardPile, stockPile);
+           // com.play(discardPile, stockPile);
            // 2 diffrent add eight methods for player -- the one we have return number(suit) given to discard pile to change the top 
            // one for the computer that just picks random 0 -3 num to return to discard pile 
            // discard pile method eightAdded take an int to change suit 
            for(int i = 0; i < 11; i++) // plays 10 rounds to test
            {
                com.printHand(); // for testing 
-               com.play(discardPile, stockPile);
+             //  com.play(discardPile, stockPile);
            if(com.getHandSize()== 0)
             {
                 
