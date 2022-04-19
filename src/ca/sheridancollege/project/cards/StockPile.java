@@ -134,7 +134,7 @@ public final class StockPile extends GroupOfCards
     
     public void giveCards(ArrayList<CrazyEightsCard> cards, Player opponent, int cardPickUp, StockPile stockPile)
     {
-        for(int i = 0; i <= cardPickUp; i++)
+        for(int i = 0; i < cardPickUp; i++)
         {
            opponent.addToHand(stockPile.pickUp());
             

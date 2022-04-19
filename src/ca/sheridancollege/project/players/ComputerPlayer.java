@@ -44,8 +44,6 @@ public final class ComputerPlayer extends Player
         int cardsPlacedThisTurn = 0;
         cardsPlaced = 0;
 
-        printHand();
-
         if (cardsPlacedThisTurn == 0 && discardPile.hasMatch(hand))
         {
             do

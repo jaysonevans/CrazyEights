@@ -200,6 +200,7 @@ public final class CrazyEights extends Game
             {
 
                 count++;
+                view.promptOneCardLeft(player.getHandSize(), player);
                 player.play(discardPile, stockPile, players);
                 discardPile.addingCards(player, stockPile, discardPile, getPlayerToLeft(players, count));
 

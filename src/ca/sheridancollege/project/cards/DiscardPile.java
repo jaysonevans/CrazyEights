@@ -268,10 +268,8 @@ public final class DiscardPile extends GroupOfCards
         // Get the suit from the user and validate it
         while (go)
         {
-            view.promptForSuit();
             Random random = new Random();
             int newSuit = random.nextInt(NUMBER_OF_SUITS - 1);
-
             // Find the corresponding suit
             // If no suit matches, report an error
             switch (newSuit)

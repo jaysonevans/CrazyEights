@@ -6,6 +6,7 @@ import java.util.Scanner;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
 import ca.sheridancollege.project.cards.Suit;
 import ca.sheridancollege.project.cards.Value;
+import ca.sheridancollege.project.players.Player;
 import java.io.Serializable;
 
 /**
@@ -162,5 +163,11 @@ public class CrazyEightsUI implements Serializable
 
         return input.next();
     }
-
+    public void promptOneCardLeft(int handSize, Player player)
+    {
+        if (handSize == 1)
+        {
+            System.out.println(player.getName() +" has ONE card left");
+        }
+    }
 }
