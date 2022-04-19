@@ -12,8 +12,6 @@ import ca.sheridancollege.project.players.HumanPlayer;
 import ca.sheridancollege.project.players.Player;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.InputMismatchException;
 import java.util.Random;
 
 /**
@@ -30,7 +28,7 @@ public final class CrazyEights extends Game
 
     public static final String NAME = "Crazy Eights";
     public static final int NUMBER_OF_STARTING_CARDS = 8;
-    private CrazyEightsUI view = CrazyEightsUI.getInstance(); // create the view
+    private final CrazyEightsUI view = CrazyEightsUI.getInstance(); // create the view
 
     /**
      * Constructor isn't supposed to be used as a typical object, more as a
@@ -137,6 +135,9 @@ public final class CrazyEights extends Game
 
         // Load the save file
         File saveFile = new File(IOHandler.getSaveFileName());
+        
+        // Create the retriever 
+        Retriever retriever = Retriever.getInstance();
 
         // Create an ArrayList
         ArrayList<Player> players = new ArrayList<>();
@@ -181,9 +182,10 @@ public final class CrazyEights extends Game
 
             if (answer == 'y')
             {
-                view.display("In the retriever");
-                Retriever retriever = Retriever.getInstance();
-                retriever.restore(discardPile, stockPile, players);
+                //retriever.restore(discardPile, stockPile, players);
+                discardPile = retriever.restoreDiscardPile();
+                stockPile = retriever.restoreStockPile();
+                players = retriever.restorePlayers();
             }
         }
 

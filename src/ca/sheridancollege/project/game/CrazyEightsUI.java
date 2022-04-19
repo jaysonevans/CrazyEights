@@ -6,36 +6,38 @@ import java.util.Scanner;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
 import ca.sheridancollege.project.cards.Suit;
 import ca.sheridancollege.project.cards.Value;
+import java.io.Serializable;
 
 /**
  * A class acting as the view for the program
- * 
+ *
  * @author Ryan Stewart
  */
-public class CrazyEightsUI {
+public class CrazyEightsUI implements Serializable
+{
 
-    private Scanner input = new Scanner(System.in);
     private static CrazyEightsUI instance = null;
 
-    private CrazyEightsUI() 
+    private CrazyEightsUI()
     {
 
     }
 
-    public static CrazyEightsUI getInstance() 
+    public static CrazyEightsUI getInstance()
     {
-        if (instance == null) {
+        if (instance == null)
+        {
             instance = new CrazyEightsUI();
         }
         return instance;
     }
 
-    public void display(String message) 
+    public void display(String message)
     {
         System.out.println(message);
     }
 
-    public void displayWelcome(String plyName, String gameName) 
+    public void displayWelcome(String plyName, String gameName)
     {
         System.out.println("\nGreetings, " + plyName + ".\nWelcome to " + gameName + ".");
     }
@@ -56,26 +58,28 @@ public class CrazyEightsUI {
                 "7. Twos stack");
     }
 
-    public void displayPlayerWin(String name) 
+    public void displayPlayerWin(String name)
     {
         System.out.println("Congratulations " + name + "!");
         System.out.println("You just won the game!");
     }
 
-    public void displayPlayerLoss(String name) 
+    public void displayPlayerLoss(String name)
     {
         System.out.println(name + " wins!");
         System.out.println("Sorry 'bout the loss; try again next time");
     }
 
-    public String getPlayerName() 
+    public String getPlayerName()
     {
         System.out.print("Enter your name: ");
+        Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
 
-    public int getNumberOfOpponents() 
+    public int getNumberOfOpponents()
     {
+        Scanner input = new Scanner(System.in);
         int numberOfOpponents = 1;
         try
         {
@@ -96,62 +100,67 @@ public class CrazyEightsUI {
         return numberOfOpponents;
     }
 
-    public char promptRestoreFromSave() 
+    public char promptRestoreFromSave()
     {
+        Scanner input = new Scanner(System.in);
         System.out.println("Would you like to restore from save?");
         return input.next().charAt(0);
     }
 
-    public void printCard(Value value, Suit suit, int index) 
+    public void printCard(Value value, Suit suit, int index)
     {
         System.out.printf("%d: %-6sof %s\n", index, value, suit);
     }
 
-    public void printCard(CrazyEightsCard card) 
+    public void printCard(CrazyEightsCard card)
     {
         System.out.printf("%-6sof %s\n", card.getValue(), card.getSuit());
     }
 
     /**
-     * Text prompt for the user to enter a suit number
-     * when placing an eight.
+     * Text prompt for the user to enter a suit number when placing an eight.
      */
     public int promptForSuit()
     {
+        Scanner input = new Scanner(System.in);
         System.out.println("What would you like the top suit to be:");
-    
-        for (Suit suit: Suit.values())
+
+        for (Suit suit : Suit.values())
         {
             System.out.printf("%d:%s\n", suit.ordinal(), suit.name());
         }
 
         return input.nextInt();
     }
-    
-    public String promptForCard() 
+
+    public String promptForCard()
     {
+        Scanner input = new Scanner(System.in);
         System.out.print("Enter a card: ");
 
         return input.next();
     }
 
-    public String promptConfirmQuit() 
+    public String promptConfirmQuit()
     {
+        Scanner input = new Scanner(System.in);
         System.out.println("Are you sure you wanna end the game? (y/n):");
         return input.next();
     }
 
-    public char promptForSave() 
+    public char promptForSave()
     {
+        Scanner input = new Scanner(System.in);
         System.out.println("Do you want to save the game before you go?");
         return input.next().charAt(0);
     }
 
-    public String promptAnotherCard() 
+    public String promptAnotherCard()
     {
+        Scanner input = new Scanner(System.in);
         System.out.println("Would you like to enter another card (y/n [default]):");
 
         return input.next();
     }
-    
+
 }

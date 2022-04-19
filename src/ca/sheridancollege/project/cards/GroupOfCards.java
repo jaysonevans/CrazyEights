@@ -30,7 +30,7 @@ public class GroupOfCards implements Serializable
 
     //The group of cards, stored in an ArrayList
     protected ArrayList<CrazyEightsCard> cards = new ArrayList<>();
-    protected transient CrazyEightsUI view = CrazyEightsUI.getInstance();
+    protected CrazyEightsUI view = CrazyEightsUI.getInstance();
     private int size;//the size of the grouping
 
     public GroupOfCards(int size)

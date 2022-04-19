@@ -66,6 +66,7 @@ public class Saver extends IOHandler
         {
             ex.printStackTrace();
         }
+        /*
         try
         {
             testCorrectValuesSaved();
@@ -73,8 +74,10 @@ public class Saver extends IOHandler
         {
             ex.printStackTrace();
         }
+*/
     }
 
+    /*
     public void testCorrectValuesSaved() throws IOException, ClassNotFoundException
     {
         ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(SAVE_FILE_NAME)));
@@ -82,5 +85,6 @@ public class Saver extends IOHandler
         discardPile.printPile();
         input.close();
     }
+*/
 
 }

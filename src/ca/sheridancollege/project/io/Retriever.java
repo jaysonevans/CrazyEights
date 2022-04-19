@@ -51,26 +51,83 @@ public class Retriever extends IOHandler
      */
     public void restore(DiscardPile discardPile, StockPile stockPile, ArrayList<Player> players)
     {
-        try
+        try ( ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(SAVE_FILE_NAME)));)
         {
-            try ( ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(SAVE_FILE_NAME)));)
-            {
-                try
-                {
-                    discardPile = (DiscardPile) input.readObject();
-                    discardPile.printPile();
-                    stockPile = (StockPile) input.readObject();
-                    players = (ArrayList<Player>) input.readObject();
-                } catch (ClassNotFoundException ex)
-                {
-                } catch (EOFException ex)
-                {
-                    System.out.println("File " + SAVE_FILE_NAME + " unexpectedly ended");
-                }
-            }
+            discardPile = (DiscardPile) input.readObject();
+            discardPile.printPile();
+            stockPile = (StockPile) input.readObject();
+            players = (ArrayList<Player>) input.readObject();
+        } catch (ClassNotFoundException ex)
+        {
+        } catch (EOFException ex)
+        {
+            System.out.println("File " + SAVE_FILE_NAME + " unexpectedly ended");
+        } catch (IOException ex)
+        {
+        }
+    }
+
+    public DiscardPile restoreDiscardPile()
+    {
+
+        DiscardPile discardPile = null;
+
+        try ( ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(SAVE_FILE_NAME)));)
+        {
+            discardPile = (DiscardPile) input.readObject();
+        } catch (ClassNotFoundException ex)
+        {
+        } catch (EOFException ex)
+        {
+            System.out.println("File " + SAVE_FILE_NAME + " unexpectedly ended");
         } catch (IOException ex)
         {
         }
 
+        return discardPile;
     }
+
+    public StockPile restoreStockPile()
+    {
+
+        StockPile stockPile = null;
+
+        try ( ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(SAVE_FILE_NAME)));)
+        {
+            input.readObject(); // To read the DiscardPile which comes before the StockPile
+            stockPile = (StockPile) input.readObject();
+        } catch (ClassNotFoundException ex)
+        {
+        } catch (EOFException ex)
+        {
+            System.out.println("File " + SAVE_FILE_NAME + " unexpectedly ended");
+        } catch (IOException ex)
+        {
+        }
+
+        return stockPile;
+    }
+
+    public ArrayList<Player> restorePlayers()
+    {
+
+        ArrayList<Player> players = null;
+
+        try ( ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(SAVE_FILE_NAME)));)
+        {
+            input.readObject(); // Read the DiscardPile
+            input.readObject(); // Read the StockPile
+            players = (ArrayList<Player>) input.readObject();
+        } catch (ClassNotFoundException ex)
+        {
+        } catch (EOFException ex)
+        {
+            System.out.println("File " + SAVE_FILE_NAME + " unexpectedly ended");
+        } catch (IOException ex)
+        {
+        }
+
+        return players;
+    }
+
 }

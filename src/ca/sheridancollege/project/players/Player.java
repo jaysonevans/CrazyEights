@@ -13,7 +13,6 @@ import ca.sheridancollege.project.game.CrazyEightsUI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.io.Serializable;
-import java.util.Scanner;
 
 /**
  * A class that models each Player in the game. Players have an identifier, which should be unique.
@@ -30,7 +29,7 @@ public abstract class Player implements Cloneable, Serializable
     private String name; //the unique name for this player
     public int cardsPlaced = 0;
     protected ArrayList<CrazyEightsCard> hand = new ArrayList<>();
-    protected transient CrazyEightsUI view = CrazyEightsUI.getInstance();
+    protected CrazyEightsUI view = CrazyEightsUI.getInstance();
 
     /**
      * A constructor that allows you to set the player's unique ID
