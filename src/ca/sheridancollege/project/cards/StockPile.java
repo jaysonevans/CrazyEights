@@ -1,7 +1,6 @@
 package ca.sheridancollege.project.cards;
 
 
-import ca.sheridancollege.project.game.CrazyEightsUI;
 import ca.sheridancollege.project.players.Player;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -132,6 +131,14 @@ public final class StockPile extends GroupOfCards
         super.printPile();
     }
     
+    /**
+     *  Distributes cards from the stock pile to a player.
+     * 
+     * @param cards
+     * @param opponent
+     * @param cardPickUp
+     * @param stockPile 
+     */
     public void giveCards(ArrayList<CrazyEightsCard> cards, Player opponent, int cardPickUp, StockPile stockPile)
     {
         for(int i = 0; i < cardPickUp; i++)

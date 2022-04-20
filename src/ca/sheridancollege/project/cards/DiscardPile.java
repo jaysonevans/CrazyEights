@@ -1,6 +1,5 @@
 package ca.sheridancollege.project.cards;
 
-import ca.sheridancollege.project.game.CrazyEightsUI;
 import ca.sheridancollege.project.players.Player;
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,11 +19,9 @@ public final class DiscardPile extends GroupOfCards
 
     /**
      * Constructs a discard pile with a size equal to that of the deck.
+     * @param startingCard
+     * @return 
      */
-    // public DiscardPile()
-    // {
-    //     super(NUMBER_OF_VALUES * NUMBER_OF_SUITS);
-    // }
     public static DiscardPile getInstance(CrazyEightsCard startingCard)
     {
         if (instance == null)
@@ -90,8 +87,13 @@ public final class DiscardPile extends GroupOfCards
             }
         }
     }
-
-    // used for the computer opponent to hand eight cards 
+    
+    /**
+     * Used for when the computer player puts down a card.
+     * 
+     * @param card
+     * @param name 
+     */
     public void add(CrazyEightsCard card, String name)
     {
         // For the first card added to the pile when starting the game
@@ -177,16 +179,37 @@ public final class DiscardPile extends GroupOfCards
         return card.getValue() == Value.EIGHT;
     }
 
+    /**
+     * Checks if the card put down was a two.
+     * 
+     * @param card
+     * @return 
+     */
     public boolean cardIsTwo(CrazyEightsCard card)
     {
         return card.getValue() == Value.TWO;
     }
 
-    public boolean CardIsQueenOfSpades(CrazyEightsCard card)
+    /**
+     * Checks if the card is a Queen of Spades.
+     * 
+     * @param card
+     * @return 
+     */
+    public boolean cardIsQueenOfSpades(CrazyEightsCard card)
     {
         return card.getValue() == Value.QUEEN && card.getSuit() == Suit.SPADES;
     }
 
+    /**
+     * Search for special cards, which are all cards of value two and the 
+     * Queen of Spades. Also, keeps track of how much the next player will have
+     * to pick up.
+     * 
+     * @param cards
+     * @param cardsPlaced
+     * @return 
+     */
     public int searchDiscardPile(ArrayList<CrazyEightsCard> cards, int cardsPlaced)
     {
         int pickUpAmount = 0;
@@ -198,7 +221,7 @@ public final class DiscardPile extends GroupOfCards
             {
 
                 pickUpAmount += 2;
-            } else if (CardIsQueenOfSpades(cards.get(pileSize)))
+            } else if (cardIsQueenOfSpades(cards.get(pileSize)))
             {
                 pickUpAmount += 5;
             }
@@ -261,6 +284,14 @@ public final class DiscardPile extends GroupOfCards
         cards.add(card); // Add the modified card to the pile
     }
 
+    /**
+     * Similar to the addEight() above but is made to be used by the an instance
+     * of the ComputerPlayer class to select a suit for the eight they put
+     * down.
+     * 
+     * @param card
+     * @param name 
+     */
     public void addEight(CrazyEightsCard card, String name)
     {
         boolean go = true; // sentinel value to ensure a correct suit number was entered
@@ -299,6 +330,15 @@ public final class DiscardPile extends GroupOfCards
         cards.add(card); // Add the modified card to the pile
     }
 
+    /**
+     * Acts as a controller method to cause the player to pick up some amount
+     * of cards.
+     * 
+     * @param player the player putting down the special cards (twos and the Queen of Spades)
+     * @param stockPile
+     * @param discardPile
+     * @param opponent the next player who will pick up
+     */
     public void addingCards(Player player, StockPile stockPile, DiscardPile discardPile, Player opponent)
     {
 

@@ -3,9 +3,7 @@ package ca.sheridancollege.project.io;
 import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
 import ca.sheridancollege.project.players.Player;
-
 import java.io.IOException;
-import java.io.EOFException;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -43,30 +41,8 @@ public class Retriever extends IOHandler
     }
 
     /**
-     * Sets objects in the game according to what they are in the save file.
-     *
-     * @param discardPile
-     * @param stockPile
-     * @param players
+     * @return the discard pile previously saved
      */
-    public void restore(DiscardPile discardPile, StockPile stockPile, ArrayList<Player> players)
-    {
-        try ( ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(SAVE_FILE_NAME)));)
-        {
-            discardPile = (DiscardPile) input.readObject();
-            discardPile.printPile();
-            stockPile = (StockPile) input.readObject();
-            players = (ArrayList<Player>) input.readObject();
-        } catch (ClassNotFoundException ex)
-        {
-        } catch (EOFException ex)
-        {
-            System.out.println("File " + SAVE_FILE_NAME + " unexpectedly ended");
-        } catch (IOException ex)
-        {
-        }
-    }
-
     public DiscardPile restoreDiscardPile()
     {
 
@@ -75,18 +51,16 @@ public class Retriever extends IOHandler
         try ( ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(SAVE_FILE_NAME)));)
         {
             discardPile = (DiscardPile) input.readObject();
-        } catch (ClassNotFoundException ex)
-        {
-        } catch (EOFException ex)
-        {
-            System.out.println("File " + SAVE_FILE_NAME + " unexpectedly ended");
-        } catch (IOException ex)
+        } catch (ClassNotFoundException | IOException ex)
         {
         }
 
         return discardPile;
     }
 
+    /**
+     * @return the stock pile previously saved
+     */
     public StockPile restoreStockPile()
     {
 
@@ -96,18 +70,16 @@ public class Retriever extends IOHandler
         {
             input.readObject(); // To read the DiscardPile which comes before the StockPile
             stockPile = (StockPile) input.readObject();
-        } catch (ClassNotFoundException ex)
-        {
-        } catch (EOFException ex)
-        {
-            System.out.println("File " + SAVE_FILE_NAME + " unexpectedly ended");
-        } catch (IOException ex)
+        } catch (ClassNotFoundException | IOException ex)
         {
         }
 
         return stockPile;
     }
 
+    /**
+     * @return the ArrayList of players previously saved
+     */
     public ArrayList<Player> restorePlayers()
     {
 
@@ -118,12 +90,7 @@ public class Retriever extends IOHandler
             input.readObject(); // Read the DiscardPile
             input.readObject(); // Read the StockPile
             players = (ArrayList<Player>) input.readObject();
-        } catch (ClassNotFoundException ex)
-        {
-        } catch (EOFException ex)
-        {
-            System.out.println("File " + SAVE_FILE_NAME + " unexpectedly ended");
-        } catch (IOException ex)
+        } catch (ClassNotFoundException | IOException ex)
         {
         }
 

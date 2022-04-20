@@ -2,11 +2,9 @@ package ca.sheridancollege.project.players;
 
 import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
-import ca.sheridancollege.project.game.CrazyEightsUI;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
 import ca.sheridancollege.project.io.Saver;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * This class represents a human player.

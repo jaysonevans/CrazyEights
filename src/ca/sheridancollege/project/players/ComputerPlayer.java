@@ -2,7 +2,6 @@ package ca.sheridancollege.project.players;
 
 import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
-import ca.sheridancollege.project.game.CrazyEightsUI;
 import ca.sheridancollege.project.cards.CrazyEightsCard;
 import java.util.ArrayList;
 
@@ -26,8 +25,10 @@ public final class ComputerPlayer extends Player
     }
 
     /**
-     * To be called by the game to initiate the computer's turn.Does not require
+     * To be called by the game to initiate the computer's turn. Does not require
      * user input.
+     * Noteworthy is the length of the play method. Mainly due to accounting for 
+     * the many different actions the computer player can take during their turn.
      *
      * @param discardPile
      * @param stockPile

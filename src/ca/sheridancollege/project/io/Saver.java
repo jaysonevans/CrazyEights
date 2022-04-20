@@ -3,11 +3,7 @@ package ca.sheridancollege.project.io;
 import ca.sheridancollege.project.cards.DiscardPile;
 import ca.sheridancollege.project.cards.StockPile;
 import ca.sheridancollege.project.players.Player;
-
 import java.io.IOException;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -61,30 +57,9 @@ public class Saver extends IOHandler
             output.writeObject(players);
         } catch (IOException ex)
         {
-            ex.printStackTrace();
         } catch (Exception ex)
         {
-            ex.printStackTrace();
         }
-        /*
-        try
-        {
-            testCorrectValuesSaved();
-        } catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
-*/
     }
-
-    /*
-    public void testCorrectValuesSaved() throws IOException, ClassNotFoundException
-    {
-        ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(SAVE_FILE_NAME)));
-        DiscardPile discardPile = (DiscardPile) input.readObject();
-        discardPile.printPile();
-        input.close();
-    }
-*/
 
 }

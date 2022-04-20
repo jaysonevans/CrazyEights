@@ -59,11 +59,19 @@ public abstract class Player implements Cloneable, Serializable
         this.name = name;
     }
 
+    /**
+     * @return the number of cards placed
+     */
     public int getCardsPlaced() 
     {
         return cardsPlaced;
     }
 
+    /**
+     * @param cardsPlaced number to set the card placed to
+     * 
+     * Mainly for testing.
+     */
     public void setCardsPlaced(int cardsPlaced) 
     {
         this.cardsPlaced = cardsPlaced;

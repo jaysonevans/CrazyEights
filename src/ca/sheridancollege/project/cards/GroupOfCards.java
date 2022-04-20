@@ -80,4 +80,4 @@ public class GroupOfCards implements Serializable
             view.printCard(card);
         }
     }
-}//end class
+}
