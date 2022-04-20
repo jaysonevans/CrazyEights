@@ -103,7 +103,7 @@ public class CrazyEightsUI implements Serializable
     public char promptRestoreFromSave()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("Would you like to restore from save?");
+        System.out.println("Would you like to restore from save? (y/n):");
         return input.next().charAt(0);
     }
 
@@ -151,7 +151,7 @@ public class CrazyEightsUI implements Serializable
     public char promptForSave()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("Do you want to save the game before you go?");
+        System.out.println("Do you want to save the game before you go? (y/n):");
         return input.next().charAt(0);
     }
 

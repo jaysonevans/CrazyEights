@@ -148,52 +148,53 @@ public final class CrazyEights extends Game
         // Create the stock pile
         StockPile stockPile = null;
 
-        if (saveFile.exists())
+        char answer = view.promptRestoreFromSave();
+
+        if (answer == 'y' && saveFile.exists())
         {
-            char answer = view.promptRestoreFromSave();
-
-            if (answer == 'y')
+            discardPile = retriever.restoreDiscardPile();
+            stockPile = retriever.restoreStockPile();
+            players = retriever.restorePlayers();
+        } else
+        {
+            if (!saveFile.exists())
             {
-                discardPile = retriever.restoreDiscardPile();
-                stockPile = retriever.restoreStockPile();
-                players = retriever.restorePlayers();
-            } else
-            {
-
-                // Prompt for the name of the player
-                String name = view.getPlayerName();
-
-                // Instantiate the player
-                HumanPlayer humanPlayer = new HumanPlayer(name);
-                players.add(humanPlayer);
-
-                // Display a welcome message to the player and print the rules
-                view.displayWelcome(humanPlayer.getName(), getName());
-                view.displayRules();
-
-                // Ask the user how many opponents they would like
-                int numberOfOpponents = view.getNumberOfOpponents();
-
-                // Create the opponents
-                createComputerPlayers(numberOfOpponents, players);
-
-                // Generate a random card
-                Random random = new Random();
-
-                Value randomValue = Value.values()[random.nextInt(Value.values().length)];
-                Suit randomSuit = Suit.values()[random.nextInt(Suit.values().length)];
-
-                CrazyEightsCard startingCard = new CrazyEightsCard(randomSuit, randomValue);
-
-                // Instantiate the stock pile and fill it with all but the random card
-                stockPile = StockPile.getInstance(startingCard);
-
-                // Create the discard pile and give one card to it
-                discardPile = DiscardPile.getInstance(startingCard);
-
-                // Deal the cards
-                deal(players, stockPile);
+                view.display("You do not have a save file...\nUsing the default game mode.");
             }
+
+            // Prompt for the name of the player
+            String name = view.getPlayerName();
+
+            // Instantiate the player
+            HumanPlayer humanPlayer = new HumanPlayer(name);
+            players.add(humanPlayer);
+
+            // Display a welcome message to the player and print the rules
+            view.displayWelcome(humanPlayer.getName(), getName());
+            view.displayRules();
+
+            // Ask the user how many opponents they would like
+            int numberOfOpponents = view.getNumberOfOpponents();
+
+            // Create the opponents
+            createComputerPlayers(numberOfOpponents, players);
+
+            // Generate a random card
+            Random random = new Random();
+
+            Value randomValue = Value.values()[random.nextInt(Value.values().length)];
+            Suit randomSuit = Suit.values()[random.nextInt(Suit.values().length)];
+
+            CrazyEightsCard startingCard = new CrazyEightsCard(randomSuit, randomValue);
+
+            // Instantiate the stock pile and fill it with all but the random card
+            stockPile = StockPile.getInstance(startingCard);
+
+            // Create the discard pile and give one card to it
+            discardPile = DiscardPile.getInstance(startingCard);
+
+            // Deal the cards
+            deal(players, stockPile);
         }
 
         // Main game loop
