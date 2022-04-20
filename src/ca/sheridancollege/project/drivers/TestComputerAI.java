@@ -11,57 +11,56 @@ import java.util.Random;
 
 /**
  *
- * This class is used to test the AI of the computer opponent +++
+ * This class is used to test the AI of the computer opponent.
  *
  * @author Justin Beaulne
  */
-public class TestComputerAI 
+public class TestComputerAI
 {
 
-    public static void main(String[] args) 
+    public static void main(String[] args)
     {
         boolean go = true;
-        
-        
-            // 5. Create the opponent
-            ComputerPlayer com = new ComputerPlayer("COM");
 
-            // 6. Generate a random card
-            Random random = new Random();
+        // 5. Create the opponent
+        ComputerPlayer com = new ComputerPlayer("COM");
 
-            Value randomValue = Value.values()[random.nextInt(Value.values().length)];
-            Suit randomSuit = Suit.values()[random.nextInt(Suit.values().length)];
+        // 6. Generate a random card
+        Random random = new Random();
 
-            CrazyEightsCard startingCard = new CrazyEightsCard(randomSuit, randomValue);
+        Value randomValue = Value.values()[random.nextInt(Value.values().length)];
+        Suit randomSuit = Suit.values()[random.nextInt(Suit.values().length)];
 
-            // 7. Instantiate the stock pile and fill it with all but the random card
-            StockPile stockPile = StockPile.getInstance(startingCard);
+        CrazyEightsCard startingCard = new CrazyEightsCard(randomSuit, randomValue);
 
-            // 8. Create the discard pile and give one card to it
-            DiscardPile discardPile = DiscardPile.getInstance(startingCard);
+        // 7. Instantiate the stock pile and fill it with all but the random card
+        StockPile stockPile = StockPile.getInstance(startingCard);
 
-            // 9. Deal the cards
-            // To the opponent
-            for (int i = 1; i <= NUMBER_OF_STARTING_CARDS; i++) 
+        // 8. Create the discard pile and give one card to it
+        DiscardPile discardPile = DiscardPile.getInstance(startingCard);
+
+        // 9. Deal the cards
+        // To the opponent
+        for (int i = 1; i <= NUMBER_OF_STARTING_CARDS; i++)
+        {
+            CrazyEightsCard card = stockPile.pickUp();
+            com.addToHand(card);
+        }
+
+        // com.play(discardPile, stockPile);
+        // 2 diffrent add eight methods for player -- the one we have return number(suit) given to discard pile to change the top 
+        // one for the computer that just picks random 0 -3 num to return to discard pile 
+        // discard pile method eightAdded take an int to change suit 
+        for (int i = 0; i < 11; i++) // plays 10 rounds to test
+        {
+            com.printHand(); // for testing 
+            //  com.play(discardPile, stockPile);
+            if (com.getHandSize() == 0)
             {
-                CrazyEightsCard card = stockPile.pickUp();
-                com.addToHand(card);
-            }
 
-           // com.play(discardPile, stockPile);
-           // 2 diffrent add eight methods for player -- the one we have return number(suit) given to discard pile to change the top 
-           // one for the computer that just picks random 0 -3 num to return to discard pile 
-           // discard pile method eightAdded take an int to change suit 
-           for(int i = 0; i < 11; i++) // plays 10 rounds to test
-           {
-               com.printHand(); // for testing 
-             //  com.play(discardPile, stockPile);
-           if(com.getHandSize()== 0)
-            {
-                
                 i = 11;
             }
-           }
-        
+        }
+
     }
 }

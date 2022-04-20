@@ -19,8 +19,9 @@ public final class DiscardPile extends GroupOfCards
 
     /**
      * Constructs a discard pile with a size equal to that of the deck.
+     *
      * @param startingCard
-     * @return 
+     * @return
      */
     public static DiscardPile getInstance(CrazyEightsCard startingCard)
     {
@@ -87,12 +88,12 @@ public final class DiscardPile extends GroupOfCards
             }
         }
     }
-    
+
     /**
      * Used for when the computer player puts down a card.
-     * 
+     *
      * @param card
-     * @param name 
+     * @param name
      */
     public void add(CrazyEightsCard card, String name)
     {
@@ -181,9 +182,9 @@ public final class DiscardPile extends GroupOfCards
 
     /**
      * Checks if the card put down was a two.
-     * 
+     *
      * @param card
-     * @return 
+     * @return
      */
     public boolean cardIsTwo(CrazyEightsCard card)
     {
@@ -192,9 +193,9 @@ public final class DiscardPile extends GroupOfCards
 
     /**
      * Checks if the card is a Queen of Spades.
-     * 
+     *
      * @param card
-     * @return 
+     * @return
      */
     public boolean cardIsQueenOfSpades(CrazyEightsCard card)
     {
@@ -202,13 +203,13 @@ public final class DiscardPile extends GroupOfCards
     }
 
     /**
-     * Search for special cards, which are all cards of value two and the 
-     * Queen of Spades. Also, keeps track of how much the next player will have
-     * to pick up.
-     * 
+     * Search for special cards, which are all cards of value two and the Queen
+     * of Spades. Also, keeps track of how much the next player will have to
+     * pick up.
+     *
      * @param cards
      * @param cardsPlaced
-     * @return 
+     * @return
      */
     public int searchDiscardPile(ArrayList<CrazyEightsCard> cards, int cardsPlaced)
     {
@@ -286,11 +287,10 @@ public final class DiscardPile extends GroupOfCards
 
     /**
      * Similar to the addEight() above but is made to be used by the an instance
-     * of the ComputerPlayer class to select a suit for the eight they put
-     * down.
-     * 
+     * of the ComputerPlayer class to select a suit for the eight they put down.
+     *
      * @param card
-     * @param name 
+     * @param name
      */
     public void addEight(CrazyEightsCard card, String name)
     {
@@ -331,10 +331,11 @@ public final class DiscardPile extends GroupOfCards
     }
 
     /**
-     * Acts as a controller method to cause the player to pick up some amount
-     * of cards.
-     * 
-     * @param player the player putting down the special cards (twos and the Queen of Spades)
+     * Acts as a controller method to cause the player to pick up some amount of
+     * cards.
+     *
+     * @param player the player putting down the special cards (twos and the
+     * Queen of Spades)
      * @param stockPile
      * @param discardPile
      * @param opponent the next player who will pick up

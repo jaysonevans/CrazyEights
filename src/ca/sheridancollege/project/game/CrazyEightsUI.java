@@ -1,13 +1,12 @@
 package ca.sheridancollege.project.game;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import ca.sheridancollege.project.cards.CrazyEightsCard;
 import ca.sheridancollege.project.cards.Suit;
 import ca.sheridancollege.project.cards.Value;
 import ca.sheridancollege.project.players.Player;
 import java.io.Serializable;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  * A class acting as the view for the program
@@ -163,11 +162,12 @@ public class CrazyEightsUI implements Serializable
 
         return input.next();
     }
+
     public void promptOneCardLeft(int handSize, Player player)
     {
         if (handSize == 1)
         {
-            System.out.println(player.getName() +" has ONE card left");
+            System.out.println(player.getName() + " has ONE card left");
         }
     }
 }

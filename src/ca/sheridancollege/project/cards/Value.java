@@ -5,7 +5,7 @@ package ca.sheridancollege.project.cards;
  *
  * @author Jayson Evans Feb 2022
  */
-public enum Value 
+public enum Value
 {
     ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING;
 }

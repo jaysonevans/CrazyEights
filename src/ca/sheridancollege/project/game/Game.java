@@ -5,23 +5,17 @@
  */
 package ca.sheridancollege.project.game;
 
-import ca.sheridancollege.project.cards.StockPile;
-import ca.sheridancollege.project.cards.DiscardPile;
-import ca.sheridancollege.project.cards.CrazyEightsCard;
-import ca.sheridancollege.project.cards.Suit;
-import ca.sheridancollege.project.cards.Value;
-import ca.sheridancollege.project.players.HumanPlayer;
 import ca.sheridancollege.project.players.Player;
 import java.util.ArrayList;
 
 /**
- * The class that models your game. You should create a more specific child of this class and instantiate the methods
- * given.
+ * The class that models your game. You should create a more specific child of
+ * this class and instantiate the methods given.
  *
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  * @author Jayson Evans Feb 2022
- * @author Justin Beaulne March 2022 
+ * @author Justin Beaulne March 2022
  */
 public abstract class Game implements Cloneable
 {
@@ -48,9 +42,9 @@ public abstract class Game implements Cloneable
      */
     public ArrayList<Player> getPlayers()
     {
-        return (ArrayList<Player>)players.clone();
+        return (ArrayList<Player>) players.clone();
     }
-    
+
     /**
      * @return the deeply copied ArrayList of players
      */
@@ -58,12 +52,12 @@ public abstract class Game implements Cloneable
     public Object clone() throws CloneNotSupportedException
     {
         ArrayList<Player> list = new ArrayList<>();
-        
-        for (Player player: players)
+
+        for (Player player : players)
         {
-            list.add((Player)player.clone());
+            list.add((Player) player.clone());
         }
-        
+
         return list;
     }
 
@@ -76,16 +70,16 @@ public abstract class Game implements Cloneable
     }
 
     /**
-     * Play the game. This might be one method or many method calls depending on your game.
+     * Play the game. This might be one method or many method calls depending on
+     * your game.
      */
     public abstract void play();
 
     /**
-     * @param players
-     * When the game is over, use this method to declare and display a winning player.
+     * @param players When the game is over, use this method to declare and
+     * display a winning player.
      */
     //public abstract Player checkForWinner(ArrayList<Player> players);
     public abstract boolean checkForWinner(Player player);
-   
 
 }//end class
