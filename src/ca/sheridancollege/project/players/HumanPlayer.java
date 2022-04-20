@@ -16,8 +16,6 @@ import java.util.ArrayList;
 public final class HumanPlayer extends Player
 {
 
-    private transient Saver saver = Saver.getInstance();
-
     /**
      * @param name to pass to the Player class The player can have any name.
      */
@@ -65,6 +63,7 @@ public final class HumanPlayer extends Player
 
                                 if (numValue == 'y' || numValue == 'Q')
                                 {
+                                    Saver saver = Saver.getInstance();
                                     saver.save(discardPile, stockPile, players);
                                 }
 
